@@ -1,0 +1,80 @@
+body{
+    margin: 0;
+    background-color: rgb(199, 255, 255);
+}
+
+
+h1{
+    text-align: center;
+    font-size: 5vw;
+}
+.about{
+    text-align: center;
+    font-size: 2vw;
+}
+
+
+.begin{
+    height: 100vh;
+    background:
+        /* top, transparent black, faked with gradient */ 
+        linear-gradient(
+        rgba(255, 0, 0, 0.7), 
+        rgba(0, 0, 0, 0.7)
+        ),
+        /* bottom, image */
+        url("../assets/begin_back.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    column-gap: 50px;
+    flex-wrap: wrap-reverse;
+    align-content: center;
+    font-size: xx-large;
+}
+
+#pfp{
+    border-radius: 100%;
+    float:left;
+}
+
+.query{
+    position: absolute;
+    top: 155%;
+    left: 10%;
+    margin-top: -50px;
+    margin-left: -50px;
+    width: 87vw;
+    height: 50vh;
+    text-align: center;
+    font-size: x-large;
+}
+#query{
+    text-align: center;
+    width:60vw;
+    height: 10vh;
+    font-size: x-large;
+    padding:10px;
+    border-radius:30px;
+    box-shadow:0 0 15px 4px rgba(34, 34, 34, 0.308);
+}
+  
+#submit{
+    height: 5vh;
+    width: 3vw;
+    font-size: large;
+}
+
+.output{
+    position:absolute;
+    top: 165%;
+    text-align: center;
+    left: 25%;
+    width: 50vw;
+    font-size: xx-large;
+  }

@@ -1,9 +1,28 @@
 <!DOCTYPE html>
 <html>
-  <body>
-    <h1>Welcome to CODERZ75 PROFILE</h1>
-    <br>
-    <p>Where do you want to go from here:</p>
-    <p><a href="slackerz.html">SLACKERZ LIBARY</a></p>
-  </body>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Coderz75</title>
+    <link href="styles/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <div class = "begin">
+        <img id = "pfp" src = "assets/pfp.jpg" style = "width: 20vw; height:auto">
+        <h1 id = "intro"></h1>
+        <h2 id = "intro-info"></h2>
+        <h5 id = "quote"></h5>
+    </div>
+    <div id = "about">
+    </div>  
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/universal-sentence-encoder"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <!-- Adds the WASM backend to the global backend registry -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-wasm/dist/tf-backend-wasm.js"></script>
+    <script src = "script/script.js"></script>
+
+</body>
 </html>
