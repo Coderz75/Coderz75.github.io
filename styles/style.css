@@ -8,12 +8,23 @@ body{
 h1{
     text-align: center;
     font-size: 5vw;
+    min-width: 20px;
+    position: sticky;
 }
 .about{
     text-align: center;
     font-size: 2vw;
+    min-width: 10px;
+    height: 100vh;
 }
-
+h2{
+    min-width: 15px;
+    font-size: 3vw;
+}
+h5{
+    min-width: 13px;
+    font-size: 2vw;
+}
 
 .begin{
     height: 100vh;
@@ -29,31 +40,25 @@ h1{
     background-repeat: no-repeat;
     background-size: cover;
     color: white;
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    column-gap: 50px;
     flex-wrap: wrap-reverse;
     align-content: center;
     font-size: xx-large;
+    text-align: center;
 }
 
 #pfp{
     border-radius: 100%;
-    float:left;
 }
 
 .query{
-    position: absolute;
-    top: 155%;
+    position: relative;
     left: 10%;
-    margin-top: -50px;
     margin-left: -50px;
     width: 87vw;
-    height: 50vh;
+    height: 10vh;
     text-align: center;
     font-size: x-large;
+    padding-bottom: 2%;
 }
 #query{
     text-align: center;
@@ -72,10 +77,9 @@ h1{
 }
 
 .output{
-    position:absolute;
-    top: 165%;
+    position: relative;
     text-align: center;
     left: 25%;
     width: 50vw;
     font-size: xx-large;
-  }
+}

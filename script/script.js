@@ -54,13 +54,13 @@ const about = `
     <h1>About Me!</h1> <br>
     <p1>Now, most of those "about me"s tend to be boring. "Born here, did this" <br>
     So here's somehting new <br>
-    Presenting... ME-AI</p1> <br>
+    Presenting... ME-AI</p1> <br><br>
     <div class = "query">
         <input type="text" id="query" name="query" placeholder="Who are you?" required /><button id ="submit">🛪</button>
-    </div>
+    </div><br>
     <div class = "output">
         <p1 id ="output"></p1>
-    </div>    
+    </div>
 </div>
 
 
@@ -74,6 +74,7 @@ My coding journey started when I did my first javascript class in second grade. 
 I was born in New York.
 I live in Washington State <br> (bro I'm not gonna put my adress on here).
 I am not a failure
+Goodbye!
 `
 
 var model;
