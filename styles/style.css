@@ -48,6 +48,7 @@ h5{
 
 #pfp{
     border-radius: 100%;
+    clip-path: circle();
 }
 
 .query{
