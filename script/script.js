@@ -75,6 +75,8 @@ I was born in New York.
 I live in Washington State <br> (bro I'm not gonna put my adress on here).
 I am not a failure
 Goodbye!
+My social security number is: [REDACTED]
+
 `
 
 var model;
@@ -84,10 +86,12 @@ async function run(){
     await speak("intro","Hello! I'm Coderz75");
     await speak("intro-info","A <b style = 'color: yellow'>backend</b> web developer");
     await speak("quote","Always learning - always growing.");
+    await speak("scroll","Scroll down ⬇️");
     await speak("about",about,10);
     document.getElementById("submit").addEventListener('click', async () => {
         let value = document.getElementById("query").value.toLowerCase();
         console.log(value)
+        document.getElementById("output").innerHTML = "Generating..."
         const answers = await read(authordata.split("\n"), value);
         console.log(answers);
         if(answers[0]["similarity"] > 0.4)
@@ -118,7 +122,7 @@ async function read(questions, userQuery){
     const userQueryVector = inputVector[0];
   
     // how many results do i want to show
-    const MAX_RESULTS = 10;
+    const MAX_RESULTS = 2;
     // loop through the blog  post data
     const predictions = dataVector
         .map((dataEntry, dataEntryIndex) => {

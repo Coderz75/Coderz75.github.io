@@ -5,15 +5,25 @@
     <meta name="viewport" content="width=device-width">
     <title>Coderz75</title>
     <link href="styles/style.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
-    <div class = "begin">
+    <div class = "begin" id = "home">
+        <br><br><br>
         <img id = "pfp" src = "assets/pfp.jpg"><br>
         <h1 id = "intro"></h1>
         <h2 id = "intro-info"></h2>
-        <h5 id = "quote"></h5>
+        <h5 id = "quote"></h5> <h5 id = "scroll"></h5>
     </div>
+    <div id = "topnav" class = "topnav">
+        <a href="#home" class="active">Home</a>
+        <a href="#about">About</a>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+          <i class="fa fa-bars"></i>
+        </a>      
+    </div>
+
     <div id = "about">
     </div>  
 
