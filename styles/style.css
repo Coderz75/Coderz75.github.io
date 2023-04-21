@@ -13,22 +13,18 @@ body::-webkit-scrollbar {
 
 h1{
     text-align: center;
-    font-size: 10vh;
-    min-width: 20px;
+    font-size: 200%;
     position: sticky;
 }
 .about{
     text-align: center;
     font-size: 4vh;
-    min-width: 10px;
     height: 100vh;
 }
 h2{
-    min-width: 15px;
     font-size: 6vh;
 }
 h5{
-    min-width: 13px;
     font-size: 3.5vh;
 }
 
@@ -56,8 +52,7 @@ h5{
 #pfp{
     border-radius: 100%;
     clip-path: circle();
-    min-width: 275px;
-    width: 20vw; 
+    width: 20%; 
     height:auto;
 }
 

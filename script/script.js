@@ -50,7 +50,7 @@ async function speak(id, text, delay = 30){
 }
 
 const about = `
-<div class = "about">
+<div class = "about"><br>
     <h1>About Me!</h1> <br>
     <p1>Now, most of those "about me"s tend to be boring. "Born here, did this" <br>
     So here's somehting new <br>
