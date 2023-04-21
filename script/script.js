@@ -1,5 +1,7 @@
 "use strict";
 
+var answering = false;
+
 // multiply with value with corresponding value in the other array at the same index, then sum.
 const dotProduct = (vector1, vector2) => {
     return vector1.reduce((product, current, index) => {
@@ -35,7 +37,7 @@ async function speak(id, text, delay = 30){
     if (id =="everythingelse") f = true;
     let t = text.trimStart();
     let inbracket = false
-    t = t[0].toUpperCase() + t.slice(1);
+    console.log(t)
     for (let i = 0; i < t.length; i++){
         final += t[i];
         if(t[i] == "<") inbracket = true;
@@ -76,11 +78,11 @@ I live in Washington State <br> (bro I'm not gonna put my adress on here).
 I am not a failure
 Goodbye!
 My social security number is: [REDACTED]
-
+1+1 = 3
+I usually like to program (duh) and read!
+My favorite book is... er... I like a lot of books
+I usually do frelance work. I just do whatever I want really...
 `
-
-var model;
-
 async function run(){
     tf.setBackend('wasm');
     await speak("intro","Hello! I'm Coderz75");
@@ -91,12 +93,15 @@ async function run(){
     document.getElementById("submit").addEventListener('click', async () => {
         let value = document.getElementById("query").value.toLowerCase();
         console.log(value)
+        if(answering) return;
+        answering = true;
         document.getElementById("output").innerHTML = "Generating..."
         const answers = await read(authordata.split("\n"), value);
         console.log(answers);
-        if(answers[0]["similarity"] > 0.4)
+        if(answers[0]["similarity"] > 0.3)
         speak("output",answers[0]["result"]);
         else speak("output","Hmm, I don't know that one...");
+        answering = false;
     });    
 }
 
