@@ -82,6 +82,9 @@ My social security number is: [REDACTED]
 I usually like to program (duh) and read!
 My favorite book is... er... I like a lot of books
 I usually do frelance work. I just do whatever I want really...
+My favorite color is blue.
+My favorite food is chicken tikka masala.
+I have a lot of projects. You'll read about them in the next section :)
 `
 async function run(){
     tf.setBackend('wasm');
