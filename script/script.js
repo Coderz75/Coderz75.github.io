@@ -31,7 +31,7 @@ const cosineSimilarity = (vector1, vector2) => {
 async function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
-async function speak(id, text, delay = 30){
+async function speak(id, text, delay = 20){
     let final = "";
     let f = false;
     if (id =="everythingelse") f = true;
@@ -64,9 +64,40 @@ const about = `
         <p1 id ="output"></p1>
     </div>
 </div>
-
-
 `
+const projects = 
+{
+    "ScienceBuzzerBot":{
+        "desc": "Simulate a science bowl round on discord! Featuring a point system, a large library of questions, and is completely centered around the ruled of national science bowl",
+        "url": "https://github.com/Coderz75/SciencebBuzzerBot",
+        "img": "https://cdn.discordapp.com/avatars/1047653068231147594/27fc2f40b80ceea663fd27b84add282a.webp?size=128"
+    },
+    "ScienceBowlBotAI":{
+        "desc": "Essentially a little project to test out tensorflow AI. Uses AI to filter through the large catalog of national science bowl question and answer hundreds of possible science questions",
+        "url": "https://coderz75.github.io/sciencebowlbotai/",
+        "img": "https://cdn.discordapp.com/avatars/1047653068231147594/27fc2f40b80ceea663fd27b84add282a.webp?size=128"
+    },
+    "A-Lang":{
+        "desc": "A coding language, purposely made to be very stupid and incomplete. This was made with the stereotype that asians are smart (however an improper stereotype) and essentially trys to put majority of the code on the coder.",
+        "url": "https://coderz75.github.io/A-Lang/",
+        "img": "https://coderz75.github.io/A-Lang/img/logo.jpg"   
+    },
+    "Runlang":{
+        "desc":"Runlang is a feature rich coding language based on c++. It is cross compatible, plus has many extra features previously visible in the now archived slackerz c++ package",
+        "url": "https://github.com/Coderz75/Runlang",
+        "img": "https://raw.githubusercontent.com/Coderz75/Runlang/main/logo.jpg"
+    },
+    "Slackerz: A C++ package to make your life easier":{
+        "desc": "Slackerz is a (now archived) package meant for c++. It incorporated many features, such a a custom string class, to smooth out some of the harder parts of c++",
+        "url": "https://github.com/Coderz75/Slackerz-CPP-Package",
+        "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/ISO_C%2B%2B_Logo.svg/800px-ISO_C%2B%2B_Logo.svg.png"
+    },
+    "Science-Moon-Model":{
+        "desc": "A fun little project to test out the three.js library. Also meant to be a science project for my school",
+        "url": "https://coderz75.github.io/Science-Moon-Model/",
+        "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/FullMoon2010.jpg/330px-FullMoon2010.jpg"
+    }
+}
 
 const authordata = `
 Hello! My name is Coderz75.
@@ -76,23 +107,59 @@ My coding journey started when I did my first javascript class in second grade. 
 I was born in New York.
 I live in Washington State <br> (bro I'm not gonna put my adress on here).
 I am not a failure
+I am not stupid
 Goodbye!
 My social security number is: [REDACTED]
-1+1 = 3
+I don't do math
 I usually like to program (duh) and read!
 My favorite book is... er... I like a lot of books
 I usually do frelance work. I just do whatever I want really...
 My favorite color is blue.
 My favorite food is chicken tikka masala.
 I have a lot of projects. You'll read about them in the next section :)
+Cool Right?
 `
 async function run(){
     tf.setBackend('wasm');
+    document.getElementById("about").innerHTML = about;
+    
+    let projects_page = `<br><h1 class = "projecttitle">Projects</h1>`;
+    let alt = false;
+    for (const key in projects) {
+        let pos;
+        if (alt){
+            pos = "right"
+        }else{
+            pos = "left"
+        }
+        let e;
+        if (!alt){
+            e = "right"
+        }else{
+            e = "left"
+        }
+        let mything = `
+        <div class = "projcont grad${e}" id = "${key.replace(" ","_")}">
+            <img src = "${projects[key]["img"]}" class = "projectImg ${pos}">
+            <div class = "textcont ${e}">
+                <h1><a href = "${projects[key]["url"]}">${key}🔗</a></h1><br>
+                <h5>${projects[key]["desc"]}</h5><br>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        `;
+        alt = !alt
+        projects_page+= mything
+    }
+    console.log(projects_page)
+    document.getElementById("projects").innerHTML=projects_page
     await speak("intro","Hello! I'm Coderz75");
     await speak("intro-info","A <b style = 'color: yellow'>backend</b> web developer");
     await speak("quote","Always learning - always growing.");
     await speak("scroll","Scroll down ⬇️");
-    await speak("about",about,10);
     document.getElementById("submit").addEventListener('click', async () => {
         let value = document.getElementById("query").value.toLowerCase();
         console.log(value)
@@ -101,11 +168,11 @@ async function run(){
         document.getElementById("output").innerHTML = "Generating..."
         const answers = await read(authordata.split("\n"), value);
         console.log(answers);
-        if(answers[0]["similarity"] > 0.3)
-        speak("output",answers[0]["result"]);
+        if(answers[0]["similarity"] > 0.3 && answers[0]["result"] != "") speak("output",answers[0]["result"]);
         else speak("output","Hmm, I don't know that one...");
         answering = false;
-    });    
+    });
+
 }
 
 document.addEventListener("load",run())
@@ -130,7 +197,7 @@ async function read(questions, userQuery){
     const userQueryVector = inputVector[0];
   
     // how many results do i want to show
-    const MAX_RESULTS = 2;
+    const MAX_RESULTS = 4;
     // loop through the blog  post data
     const predictions = dataVector
         .map((dataEntry, dataEntryIndex) => {

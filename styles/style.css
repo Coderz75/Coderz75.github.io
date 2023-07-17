@@ -1,3 +1,6 @@
+html {
+    scroll-behavior: smooth;
+}
 body{
     margin: 0;
     background-color: rgb(199, 255, 255);
@@ -11,16 +14,87 @@ body::-webkit-scrollbar {
 }
 
 
+
 h1{
     text-align: center;
     font-size: 200%;
     position: sticky;
 }
-.about{
+#about{
     text-align: center;
     font-size: 4vh;
     height: 100vh;
+    background:
+        /* top, transparent black, faked with gradient */ 
+        linear-gradient(
+        rgba(0, 0, 0, 0.7), 
+        rgba(0, 29, 116, 0.7)
+        ),
+        url("../assets/pillars-of-creation-webb-min.webp");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    color: white;
 }
+.gradright{
+    background: linear-gradient(to right, rgba(255,255,255,0.0), rgba(0,0,0,0.8));
+    background-size: 100vw fit-content;
+}
+.gradleft{
+    background: linear-gradient(to left, rgba(255,255,255,0.0), rgba(0,0,0,0.8));
+    background-size: 100vw fit-content;
+}
+.projcont{
+    margin-top: 0%;
+    position: relative;
+    width: 100vw;
+    height: fit-content;
+    padding-bottom: 20%;
+    color: white;
+}
+.projcont .right{
+    text-align: right;
+}
+.projcont .left{
+    text-align: left;
+}
+
+#projects{
+    position: relative;
+    background:
+        /* top, transparent black, faked with gradient */ 
+        linear-gradient(
+        rgba(0, 29, 116, 0.7), 
+        rgba(0, 10, 143, 0.7)
+        ),
+        url("../assets/cosmic_clifs.jpg");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+    padding: 0%;
+    margin: 0%;
+}
+.projectImg{
+    height: 30vh;
+    width:auto;
+    border-radius: 100%;
+    clip-path: circle();
+}
+.right{
+    position:absolute;
+    right:2vw;
+    text-align: left;
+}
+.left{
+    position:absolute;
+    left:2vw;
+    text-align: right;
+}
+
+
 h2{
     font-size: 6vh;
 }
@@ -33,7 +107,7 @@ h5{
     background:
         /* top, transparent black, faked with gradient */ 
         linear-gradient(
-        rgba(255, 0, 0, 0.7), 
+        rgba(105, 105, 105, 0.7), 
         rgba(0, 0, 0, 0.7)
         ),
         /* bottom, image */
@@ -49,6 +123,10 @@ h5{
     margin: 0;
 }
 
+.textcont{
+    width: 70%;
+    word-wrap: normal;
+}
 #pfp{
     border-radius: 100%;
     clip-path: circle();
@@ -93,6 +171,20 @@ h5{
 #scroll{
     text-align: right;
 }
+
+.projcont a{
+    color:white;
+}
+
+.projcont a:hover{
+    background-color: red;
+}
+.projecttitle{
+    color:white;
+    font-size: 6vh;
+}
+
+
 /* Add a black background color to the top navigation */
 .topnav {
     background-color: rgba(0,0,0,0.8);

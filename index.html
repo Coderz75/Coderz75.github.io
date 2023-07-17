@@ -11,6 +11,15 @@
 </head>
 
 <body>
+    <div id = "topnav" class = "topnav">
+        <a href="#home" class="active">Home</a>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+          <i class="fa fa-bars"></i>
+        </a>      
+    </div>
+    <div class = "actual_body">
     <div class = "begin" id = "home">
         <br><br><br>
         <img id = "pfp" src = "assets/pfp.jpg"><br>
@@ -18,17 +27,15 @@
         <h2 id = "intro-info"></h2>
         <h5 id = "quote"></h5> <h5 id = "scroll"></h5>
     </div>
-    <div id = "topnav" class = "topnav">
-        <a href="#home" class="active">Home</a>
-        <a href="#about">About</a>
-        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-          <i class="fa fa-bars"></i>
-        </a>      
-    </div>
+    
 
     <div id = "about">
-    </div>  
-
+    </div>
+    
+    <div id = "projects">
+        
+    </div>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/universal-sentence-encoder"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
