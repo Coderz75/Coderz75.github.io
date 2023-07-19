@@ -17,8 +17,7 @@ body::-webkit-scrollbar {
 
 h1{
     text-align: center;
-    font-size: 200%;
-    position: sticky;
+    font-size: 2.5vw;
 }
 #about{
     text-align: center;
@@ -27,8 +26,9 @@ h1{
     background:
         /* top, transparent black, faked with gradient */ 
         linear-gradient(
-        rgba(0, 0, 0, 0.7), 
-        rgba(0, 29, 116, 0.7)
+        rgba(0, 0, 0, 0.8), 
+        rgba(0, 29, 116, 0.8),
+        rgba(0,0,0,0.8)
         ),
         url("../assets/pillars-of-creation-webb-min.webp");
     -webkit-background-size: cover;
@@ -61,12 +61,16 @@ h1{
 }
 
 #projects{
-    position: relative;
+    display:flex;
+    flex-direction: column;
+    
     background:
         /* top, transparent black, faked with gradient */ 
         linear-gradient(
-        rgba(0, 29, 116, 0.7), 
-        rgba(0, 10, 143, 0.7)
+        rgba(0,0,0,0.7),
+        rgba(30, 38, 61, 0.8), 
+        rgba(0, 29, 116, 0.8), 
+        rgba(0, 10, 143, 0.8)
         ),
         url("../assets/cosmic_clifs.jpg");
     -webkit-background-size: cover;
@@ -78,7 +82,7 @@ h1{
     margin: 0%;
 }
 .projectImg{
-    height: 30vh;
+    height: 15vw;
     width:auto;
     border-radius: 100%;
     clip-path: circle();
@@ -96,10 +100,10 @@ h1{
 
 
 h2{
-    font-size: 6vh;
+    font-size: 3vw;
 }
 h5{
-    font-size: 3.5vh;
+    font-size: 1.75vw;
 }
 
 .begin{
@@ -107,8 +111,8 @@ h5{
     background:
         /* top, transparent black, faked with gradient */ 
         linear-gradient(
-        rgba(105, 105, 105, 0.7), 
-        rgba(0, 0, 0, 0.7)
+        rgba(105, 105, 105, 0.8), 
+        rgba(0, 0, 0, 0.8)
         ),
         /* bottom, image */
         url("../assets/begin_back.png");
