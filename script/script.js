@@ -72,6 +72,11 @@ const projects =
         "url": "https://github.com/Coderz75/SciencebBuzzerBot",
         "img": "https://cdn.discordapp.com/avatars/1047653068231147594/27fc2f40b80ceea663fd27b84add282a.webp?size=128"
     },
+    "Immune-Quest":{
+        "desc": "A project I made for my school hackathon (which I won best design in), you are a white blood cell in your hosts body tasked with defending it from infections",
+        "url": "https://coderz75.github.io/IPC-Winter-Hackathon/",
+        "img": "https://raw.githubusercontent.com/Coderz75/IPC-Winter-Hackathon/main/assets/Background.png"
+    },
     "ScienceBowlBotAI":{
         "desc": "Essentially a little project to test out tensorflow AI. Uses AI to filter through the large catalog of national science bowl question and answer hundreds of possible science questions",
         "url": "https://coderz75.github.io/sciencebowlbotai/",
