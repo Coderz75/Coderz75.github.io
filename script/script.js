@@ -67,6 +67,11 @@ const about = `
 `
 const projects = 
 {
+    "Quran RSS":{
+        "desc": "A complete RSS feed of the Holy Quran",
+        "url": "https://coderz75.github.io/Full_Quran_rss/",
+        "img": "https://images.unsplash.com/photo-1609599006353-e629aaabfeae?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cXVyYW58ZW58MHx8MHx8fDA%3D"
+    },
     "ScienceBuzzerBot":{
         "desc": "Simulate a science bowl round on discord! Featuring a point system, a large library of questions, and is completely centered around the ruled of national science bowl",
         "url": "https://github.com/Coderz75/SciencebBuzzerBot",
@@ -163,7 +168,7 @@ async function run(){
     document.getElementById("projects").innerHTML=projects_page
     await speak("intro","Hello! I'm Coderz75");
     await speak("intro-info","A <b style = 'color: yellow'>backend</b> web developer");
-    await speak("quote","Always learning - always growing.");
+    await speak("quote","\"Any fool can write code that a computer can understand. Good programmers write code that humans can understand.\"");
     await speak("scroll","Scroll down ⬇️");
     document.getElementById("submit").addEventListener('click', async () => {
         let value = document.getElementById("query").value.toLowerCase();
