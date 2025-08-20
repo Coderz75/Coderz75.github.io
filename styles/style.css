@@ -1,35 +1,49 @@
+/* Custom dynamic color-inspired palette */
+:root {
+    --md-sys-color-primary: #00AEEF; /* A vibrant blue */
+    --md-sys-color-on-primary: #FFFFFF;
+    --md-sys-color-surface: #1a1a1a; /* Dark gray for background, from your styles */
+    --md-sys-color-on-surface: #f4f4f5; /* Soft off-white for text, from your styles */
+    --md-sys-color-surface-container-high: #2a2a2a; /* Slightly lighter gray for cards, from your styles */
+    --md-sys-color-on-surface-variant: #BDBDBD;
+    --md-sys-color-accent: #60a5fa; /* Your accent color */
+}
+
+body {
+    background-color: var(--md-sys-color-surface);
+    color: var(--md-sys-color-on-surface);
+    font-family: 'Inter', sans-serif;
+}
+
+.text-md-primary {
+    color: var(--md-sys-color-primary);
+}
+.bg-md-surface {
+    background-color: var(--md-sys-color-surface);
+}
+.text-md-on-surface {
+    color: var(--md-sys-color-on-surface);
+}
+.bg-md-surface-container-high {
+    background-color: var(--md-sys-color-surface-container-high);
+}
+.text-md-on-surface-variant {
+    color: var(--md-sys-color-on-surface-variant);
+}
+
+/* Your custom CSS is moved here to be in one place */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
 }
-
-body {
-    background: var(--bg);
-    color: var(--text);
-    transition: 0.3s, color 0.3s;
-    --bg: #1a1a1a;
-    --text: #f4f4f5;
-    --accent: #60a5fa;
-    --card: #2a2a2a;
-}
-
-
-:root {
-    --bg: #ffffff;
-    --text: #1a1a1a;
-    --accent: #2563eb;
-    --card: #f4f4f5;
-}
-
 
 nav {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background: var(--bg);
+    background: var(--md-sys-color-surface);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     z-index: 1000;
 }
@@ -44,23 +58,14 @@ nav ul {
 
 nav a {
     text-decoration: none;
-    color: var(--text);
+    color: var(--md-sys-color-on-surface);
     font-weight: 600;
     transition: color 0.3s;
 }
 
 nav a:hover {
-    color: var(--accent);
+    color: var(--md-sys-color-accent);
 }
-
-
-.toggle-btn {
-    position: absolute;
-    right: 1rem;
-    top: 1rem;
-    cursor: pointer;
-}
-
 
 section {
     min-height: 100vh;
@@ -71,29 +76,16 @@ section {
     align-items: center;
     text-align: center;
 }
-section::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-  clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 90%);
-  z-index: -1;
-  background: linear-gradient(to bottom, transparent, currentColor);
-  pointer-events: none;
-}
 
-.hero{
-    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("../assets/cosmic_clifs.jpg");
-    background-position:center top;
+.hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../assets/cosmic_clifs.jpg");
+    background-position: center top;
     color: white;
     background-size: cover;
 }
 
-.hero a{
-    background: var(--accent);
+.hero a {
+    background: var(--md-sys-color-accent);
     color: white;
     padding: 0.75rem 1.5rem;
     border-radius: 6px;
@@ -103,32 +95,25 @@ section::before {
 }
 
 .transition1 {
-  position: relative;
-  height: 100px;
-  background: linear-gradient(to bottom, transparent, #5c4033);
-  margin-top: -100px; /* overlap previous section */
+    position: relative;
+    height: 100px;
+    background: linear-gradient(to bottom, transparent, var(--md-sys-color-surface));
+    margin-top: -100px;
 }
 
-#about{
-    background: rgba(93,61,45,255);
-    background-image: repeating-linear-gradient(
-        45deg,
-        rgba(255, 255, 255, 0.04) 0px,
-        rgba(255, 255, 255, 0.04) 4px,
-        transparent 4px,
-        transparent 40px
-    );
+#about {
+    background: var(--md-sys-color-surface);
 }
 
 .transition2 {
-  position: relative;
-  height: 100px;
-  background: linear-gradient(to bottom, transparent, rgb(3, 91, 94));
-  margin-top: -100px; /* overlap previous section */
+    position: relative;
+    height: 100px;
+    background: linear-gradient(to bottom, transparent, #023335);
+    margin-top: -100px;
 }
 
-#experience{
-    background: rgb(3, 91, 94);
+#experience {
+    background: #023335;
     background-image: repeating-linear-gradient(
         90deg,
         rgba(255, 255, 255, 0.05) 0px,
@@ -138,39 +123,38 @@ section::before {
     );
 }
 .transition3 {
-  position: relative;
-  height: 100px;
-  background: linear-gradient(to bottom, transparent, rgb(146, 1, 139));
-  margin-top: -100px; /* overlap previous section */
+    position: relative;
+    height: 100px;
+    background: linear-gradient(to bottom, transparent, #073d06);
+    margin-top: -100px;
 }
 
-#timeline{
-    background: rgb(146, 1, 139);
+#timeline {
+    background: #073d06;
     background-image: 
     repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.05) 0px, rgba(255, 255, 255, 0.05) 2px, transparent 2px, transparent 40px),
     repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.05) 0px, rgba(255, 255, 255, 0.05) 2px, transparent 2px, transparent 40px);
 }
-#timeline h2{
-    color: rgb(63, 0, 60);
+
+#timeline h2 {
+    color: rgb(30, 255, 0);
 }
 
 .transition4 {
-  position: relative;
-  height: 100px;
-  background: linear-gradient(to bottom, transparent, rgb(182, 146, 5));
-  margin-top: -100px; /* overlap previous section */
+    position: relative;
+    height: 100px;
+    background: linear-gradient(to bottom, transparent, rgb(182, 146, 5));
+    margin-top: -100px;
 }
 
-
-#contact{
-    background: rgb(182, 146, 5);
+#contact {
+    background: rgb(226, 182, 6);
 }
 #contact h2 {
-    color: rgb(226, 182, 8);
+    color: black;
 }
 
-h1,
-h2 {
+h1, h2 {
     margin-bottom: 1rem;
 }
 
@@ -179,8 +163,8 @@ h1 {
 }
 
 h2 {
-    font-size: 2rem;
-    color: var(--accent);
+    font-size: 4rem;
+    color: var(--md-sys-color-accent);
 }
 
 p {
@@ -188,8 +172,6 @@ p {
     margin-bottom: 2rem;
 }
 
-
-/* Hero animation */
 .hero h1 span {
     display: inline-block;
     opacity: 0;
@@ -209,7 +191,6 @@ p {
     animation-delay: 0.4s;
 }
 
-
 @keyframes fadeInUp {
     to {
         opacity: 1;
@@ -217,10 +198,6 @@ p {
     }
 }
 
-/* Home */
-
-
-/* Cards */
 .card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -230,31 +207,30 @@ p {
 }
 
 .card {
-    background: var(--card);
+    background: var(--md-sys-color-surface-container-high);
+    color: var(--md-sys-color-on-surface);
     padding: 2rem;
     border-radius: 12px;
-    transition: transform 0.3s, 0.3s;
+    transition: transform 0.3s, background 0.3s, color 0.3s;
 }
 
 .card:hover {
     transform: translateY(-5px);
-    background: var(--accent);
-    color: white;
+    background: var(--md-sys-color-accent);
+    color: var(--md-sys-color-on-primary);
 }
 
 .card-link {
-  text-decoration: none;   /* remove underline */
-  color: inherit;          /* keep text color inside the card */
-  display: block;          /* make the link wrap the whole card */
+    text-decoration: none;
+    color: inherit;
+    display: block;
 }
 
 .card-link:hover .card {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
-
-/* Timeline */
 .timeline {
     position: relative;
     max-width: 700px;
@@ -268,7 +244,7 @@ p {
     top: 0;
     bottom: 0;
     width: 4px;
-    background: var(--accent);
+    background: var(--md-sys-color-accent);
     transform: translateX(-50%);
 }
 
@@ -285,35 +261,33 @@ p {
 }
 
 .timeline-content {
-    background: var(--card);
+    background: var(--md-sys-color-surface-container-high);
+    color: var(--md-sys-color-on-surface);
     padding: 1rem;
     border-radius: 8px;
     display: inline-block;
     max-width: 300px;
 }
 
-
-/* Contact */
 .contact a {
     display: inline-block;
     margin: 0.5rem;
     padding: 0.5rem 1rem;
-    border: 2px solid black;
+    border: 2px solid var(--md-sys-color-on-surface);
     border-radius: 6px;
     text-decoration: none;
-    color: black;
+    color: var(--md-sys-color-on-surface);
     transition: 0.3s, color 0.3s;
 }
 
 .contact a:hover {
-    background: rgb(239,191,4);
-    color: white;
+    background: var(--md-sys-color-on-surface);
+    color: var(--md-sys-color-surface);
 }
-
 
 footer {
     padding: 2rem;
     text-align: center;
-    background: var(--card);
+    background: var(--md-sys-color-surface-container-high);
     margin-top: 2rem;
 }
