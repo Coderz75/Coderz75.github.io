@@ -1,229 +1,319 @@
-html {
-    scroll-behavior: smooth;
-}
-body{
+* {
     margin: 0;
-    background-color: rgb(199, 255, 255);
-    font-family: Sans-Serif;
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
 }
-/*Chrome safari and opera*/
-body::-webkit-scrollbar {
-    display: none;
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    transition: 0.3s, color 0.3s;
+    --bg: #1a1a1a;
+    --text: #f4f4f5;
+    --accent: #60a5fa;
+    --card: #2a2a2a;
 }
 
 
-
-h1{
-    text-align: center;
-    font-size: 2.5vw;
-}
-#about{
-    text-align: center;
-    font-size: 4vh;
-    height: 100vh;
-    background:
-        /* top, transparent black, faked with gradient */ 
-        linear-gradient(
-        rgba(0, 0, 0, 0.8), 
-        rgba(0, 29, 116, 0.8),
-        rgba(0,0,0,0.8)
-        ),
-        url("../assets/pillars-of-creation-webb-min.webp");
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    color: white;
-}
-.gradright{
-    background: linear-gradient(to right, rgba(255,255,255,0.0), rgba(0,0,0,0.8));
-    background-size: 100vw fit-content;
-}
-.gradleft{
-    background: linear-gradient(to left, rgba(255,255,255,0.0), rgba(0,0,0,0.8));
-    background-size: 100vw fit-content;
-}
-.projcont{
-    margin-top: 0%;
-    position: relative;
-    width: 100vw;
-    height: fit-content;
-    padding-bottom: 20%;
-    color: white;
-}
-.projcont .right{
-    text-align: right;
-}
-.projcont .left{
-    text-align: left;
-}
-
-#projects{
-    display:flex;
-    flex-direction: column;
-    
-    background:
-        /* top, transparent black, faked with gradient */ 
-        linear-gradient(
-        rgba(0,0,0,0.7),
-        rgba(30, 38, 61, 0.8), 
-        rgba(0, 29, 116, 0.8), 
-        rgba(0, 10, 143, 0.8)
-        ),
-        url("../assets/cosmic_clifs.jpg");
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-
-    padding: 0%;
-    margin: 0%;
-}
-.projectImg{
-    height: 15vw;
-    width:auto;
-    border-radius: 100%;
-    clip-path: circle();
-}
-.right{
-    position:absolute;
-    right:2vw;
-    text-align: left;
-}
-.left{
-    position:absolute;
-    left:2vw;
-    text-align: right;
+:root {
+    --bg: #ffffff;
+    --text: #1a1a1a;
+    --accent: #2563eb;
+    --card: #f4f4f5;
 }
 
 
-h2{
-    font-size: 3vw;
-}
-h5{
-    font-size: 1.75vw;
-}
-
-.begin{
-    height: 100vh;
-    background:
-        /* top, transparent black, faked with gradient */ 
-        linear-gradient(
-        rgba(105, 105, 105, 0.8), 
-        rgba(0, 0, 0, 0.8)
-        ),
-        /* bottom, image */
-        url("../assets/begin_back.png");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    color: white;
-    flex-wrap: wrap-reverse;
-    align-content: center;
-    font-size: xx-large;
-    text-align: center;
-    margin: 0;
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: var(--bg);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
 }
 
-.textcont{
-    width: 70%;
-    word-wrap: normal;
-}
-#pfp{
-    border-radius: 100%;
-    clip-path: circle();
-    width: 20%; 
-    height:auto;
+nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    list-style: none;
+    padding: 1rem;
 }
 
-.query{
-    position: relative;
-    left: 10%;
-    margin-left: -50px;
-    width: 87vw;
-    height: 10vh;
-    text-align: center;
-    font-size: x-large;
-    padding-bottom: 2%;
-}
-#query{
-    text-align: center;
-    width:60vw;
-    height: 10vh;
-    font-size: x-large;
-    padding:10px;
-    border-radius:30px;
-    box-shadow:0 0 15px 4px rgba(34, 34, 34, 0.308);
-}
-  
-#submit{
-    height: 5vh;
-    width: 3vw;
-    min-width: 50px;
-    font-size: large;
-}
-
-.output{
-    position: relative;
-    text-align: center;
-    left: 25%;
-    width: 50vw;
-    font-size: xx-large;
-}
-#scroll{
-    text-align: right;
-}
-
-.projcont a{
-    color:white;
-}
-
-.projcont a:hover{
-    background-color: red;
-}
-.projecttitle{
-    color:white;
-    font-size: 6vh;
-}
-
-
-/* Add a black background color to the top navigation */
-.topnav {
-    background-color: rgba(0,0,0,0.8);
-    position: fixed; 
-    top: 0px; 
-    left: 0px;
-    width: 100vw;
-    height: auto;
-    z-index: 500;
-}
-  
-  /* Style the links inside the navigation bar */
-.topnav a {
-    float: left;
-    display: block;
-    color: #ffffff;
-    text-align: center;
-    padding: 14px 16px;
+nav a {
     text-decoration: none;
-    font-size: 17px;
+    color: var(--text);
+    font-weight: 600;
+    transition: color 0.3s;
 }
-  
-  /* Change the color of links on hover */
-.topnav a:hover {
-    background-color: #ddd;
+
+nav a:hover {
+    color: var(--accent);
+}
+
+
+.toggle-btn {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    cursor: pointer;
+}
+
+
+section {
+    min-height: 100vh;
+    padding: 5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 90%);
+  z-index: -1;
+  background: linear-gradient(to bottom, transparent, currentColor);
+  pointer-events: none;
+}
+
+.hero{
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("../assets/cosmic_clifs.jpg");
+    background-position:center top;
+    color: white;
+    background-size: cover;
+}
+
+.hero a{
+    background: var(--accent);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s, color 0.3s;
+}
+
+.transition1 {
+  position: relative;
+  height: 100px;
+  background: linear-gradient(to bottom, transparent, #5c4033);
+  margin-top: -100px; /* overlap previous section */
+}
+
+#about{
+    background: rgba(93,61,45,255);
+    background-image: repeating-linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.04) 0px,
+        rgba(255, 255, 255, 0.04) 4px,
+        transparent 4px,
+        transparent 40px
+    );
+}
+
+.transition2 {
+  position: relative;
+  height: 100px;
+  background: linear-gradient(to bottom, transparent, rgb(3, 91, 94));
+  margin-top: -100px; /* overlap previous section */
+}
+
+#experience{
+    background: rgb(3, 91, 94);
+    background-image: repeating-linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.05) 0px,
+        rgba(255, 255, 255, 0.05) 2px,
+        transparent 2px,
+        transparent 40px
+    );
+}
+.transition3 {
+  position: relative;
+  height: 100px;
+  background: linear-gradient(to bottom, transparent, rgb(146, 1, 139));
+  margin-top: -100px; /* overlap previous section */
+}
+
+#timeline{
+    background: rgb(146, 1, 139);
+    background-image: 
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.05) 0px, rgba(255, 255, 255, 0.05) 2px, transparent 2px, transparent 40px),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.05) 0px, rgba(255, 255, 255, 0.05) 2px, transparent 2px, transparent 40px);
+}
+#timeline h2{
+    color: rgb(63, 0, 60);
+}
+
+.transition4 {
+  position: relative;
+  height: 100px;
+  background: linear-gradient(to bottom, transparent, rgb(182, 146, 5));
+  margin-top: -100px; /* overlap previous section */
+}
+
+
+#contact{
+    background: rgb(182, 146, 5);
+}
+#contact h2 {
+    color: rgb(226, 182, 8);
+}
+
+h1,
+h2 {
+    margin-bottom: 1rem;
+}
+
+h1 {
+    font-size: 3rem;
+}
+
+h2 {
+    font-size: 2rem;
+    color: var(--accent);
+}
+
+p {
+    max-width: 700px;
+    margin-bottom: 2rem;
+}
+
+
+/* Hero animation */
+.hero h1 span {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s forwards;
+}
+
+.hero h1 span:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.hero h1 span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.hero h1 span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Home */
+
+
+/* Cards */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 1000px;
+}
+
+.card {
+    background: var(--card);
+    padding: 2rem;
+    border-radius: 12px;
+    transition: transform 0.3s, background 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    background: var(--accent);
+    color: white;
+}
+
+.card-link {
+  text-decoration: none;   /* remove underline */
+  color: inherit;          /* keep text color inside the card */
+  display: block;          /* make the link wrap the whole card */
+}
+
+.card-link:hover .card {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Timeline */
+.timeline {
+    position: relative;
+    max-width: 700px;
+    margin: 2rem auto;
+}
+
+.timeline::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--accent);
+    transform: translateX(-50%);
+}
+
+.timeline-item {
+    position: relative;
+    margin: 2rem 0;
+    padding-left: 50%;
+}
+
+.timeline-item:nth-child(even) {
+    padding-left: 0;
+    padding-right: 50%;
+    text-align: right;
+}
+
+.timeline-content {
+    background: var(--card);
+    padding: 1rem;
+    border-radius: 8px;
+    display: inline-block;
+    max-width: 300px;
+}
+
+
+/* Contact */
+.contact a {
+    display: inline-block;
+    margin: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: 2px solid black;
+    border-radius: 6px;
+    text-decoration: none;
     color: black;
+    transition: 0.3s, color 0.3s;
 }
-  
-  /* Add an active class to highlight the current page */
-.topnav a.active {
-    background-color: #ff7360;
-    color: rgb(0, 0, 0);
+
+.contact a:hover {
+    background: rgb(239,191,4);
+    color: white;
 }
-  
-  /* Hide the link that should open and close the topnav on small screens */
-.topnav .icon {
-    display: none;
+
+
+footer {
+    padding: 2rem;
+    text-align: center;
+    background: var(--card);
+    margin-top: 2rem;
 }

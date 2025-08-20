@@ -1,46 +1,104 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>Coderz75</title>
-    <link href="styles/style.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9158757378309809"
-     crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuaym Syed | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/style.css">
 </head>
 
 <body>
-    <div id = "topnav" class = "topnav">
-        <a href="#home" class="active">🚀Coderz75</a>
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-          <i class="fa fa-bars"></i>
-        </a>      
-    </div>
-    <div class = "actual_body">
-    <div class = "begin" id = "home">
-        <br><br><br>
-        <img id = "pfp" src = "assets/pfp.jpg"><br>
-        <h1 id = "intro"></h1>
-        <h2 id = "intro-info"></h2>
-        <h5 id = "quote"></h5> <h5 id = "scroll"></h5>
-    </div>
-    
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#timeline">Timeline</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
 
-    <div id = "about">
-    </div>
-    
-    <div id = "projects">
-        
-    </div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/universal-sentence-encoder"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <!-- Adds the WASM backend to the global backend registry -->
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-wasm/dist/tf-backend-wasm.js"></script>
-    <script src = "script/script.js"></script>
+
+    <section id="home" class="hero">
+        <h1>
+            <span>Nuaym</span>
+            <span>Syed</span>
+        </h1>
+        <p>Aspiring Engineer & Developer | University of Washington Seattle</p>
+        <a href="#projects" class="contact">View My Work</a>
+    </section>
+
+    <div class="transition1"></div>
+
+
+    <section id="about">
+        <h2>About Me</h2>
+        <p>I’m passionate about software development, robotics, and problem-solving. Currently an early admit at the
+            University of Washington Academy, I’m pursuing opportunities to combine engineering with innovation and
+            creativity.</p>
+    </section>
+
+    <div class="transition2"></div>
+
+    <section id="experience">
+        <h2>Experience</h2>
+        <div class="card-grid">
+            <a href="https://github.com/hongyiRen2009/Terrain-Generator-With-Raycasting/" target="_blank" class="card-link">
+                <div class="card">
+                    <h3>G.R.A.S.</h3>
+                    <p>3D rendering engine for web with high accuracy visualization.</p>
+                </div>
+            </a>
+            <a href="https://github.com/yourusername/project1" target="_blank" class="card-link">
+                <div class="card">
+                    <h3>Robotics Programming</h3>
+                    <p>Developed autonomous routines for FRC robots.</p>
+                </div>
+            </a>
+            <a href="https://github.com/yourusername/project1" target="_blank" class="card-link">
+                <div class="card">
+                    <h3>Science Bowl Coaching</h3>
+                    <p>Created lectures, homework, and practice problems for students.</p>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <div class="transition3"></div>
+
+    <section id="timeline">
+        <h2>Timeline</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">UW Academy Admission (2025)</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">Saints Robotics Programmer</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">DECA Business Startup Plan</div>
+            </div>
+        </div>
+    </section>
+
+    <div class="transition4"></div>
+
+    <section id="contact">
+        <h2>Contact</h2>
+        <div class="contact">
+            <a href="mailto:n.syed.dev@gmail.com">Email</a>
+            <a href="https://linkedin.com/in/nuaym-syed" target="_blank">LinkedIn</a>
+            <a href="https://github.com/Coderz75" target="_blank">GitHub</a>
+        </div>
+    </section>
+
+
+    <footer>
+        © 2025 Nuaym Syed — All Rights Reserved
+    </footer>
+
 </body>
+
 </html>
