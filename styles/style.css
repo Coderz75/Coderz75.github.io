@@ -64,9 +64,9 @@ nav {
 nav ul {
     display: flex;
     justify-content: center;
-    gap: 2rem;
+    gap: 32px;
     list-style: none;
-    padding: 1rem;
+    padding: 16px;
 }
 
 nav a {
@@ -82,7 +82,7 @@ nav a:hover {
 
 section {
     min-height: 100vh;
-    padding: 5rem 2rem;
+    padding: 80px 32px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -100,7 +100,7 @@ section {
 .hero a {
     background: var(--md-sys-color-accent);
     color: white;
-    padding: 0.75rem 1.5rem;
+    padding: 0.780px 1.80px;
     border-radius: 6px;
     text-decoration: none;
     font-weight: 600;
@@ -176,25 +176,25 @@ section {
 
 h1,
 h2 {
-    margin-bottom: 1rem;
+    margin-bottom: 16px;
 }
 
 h1 {
-    font-size: 6rem;
+    font-size: 96px;
 }
 
 h2 {
-    font-size: 4rem;
+    font-size: 64px;
     color: black;
 }
 h3{
-    font-size: 1rem;
+    font-size: 16px;
     font-weight: bold;
 }
 
 p {
     max-width: 700px;
-    margin-bottom: 2rem;
+    margin-bottom: 32px;
 }
 
 .hero h1 span {
@@ -226,7 +226,7 @@ p {
 .card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
+    gap: 24px;
     width: 100%;
     max-width: 1000px;
 }
@@ -234,7 +234,7 @@ p {
 .card {
     background: var(--md-sys-color-surface-container-high);
     color: var(--md-sys-color-on-surface);
-    padding: 2rem;
+    padding: 32px;
     border-radius: 12px;
     transition: transform 0.3s, 0.3s, color 0.3s;
 }
@@ -259,8 +259,8 @@ p {
 .timeline {
     position: relative;
     max-width: 700px;
-    margin: 2rem auto;
-    padding-bottom: 2rem;
+    margin: 32px auto;
+    padding-bottom: 32px;
 }
 
 .timeline::before {
@@ -277,7 +277,7 @@ p {
 
 .timeline-item {
     position: relative;
-    margin-bottom: 2rem;
+    margin-bottom: 32px;
     padding-left: 50%;
 }
 
@@ -304,17 +304,17 @@ p {
 .timeline-content {
     background: var(--md-sys-color-surface-container-high);
     color: var(--md-sys-color-on-surface);
-    padding: 1rem;
+    padding: 16px;
     border-radius: 8px;
     display: inline-block;
     max-width: 300px;
     position: relative;
-    left: 1rem;
+    left: 16px;
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .timeline-item:nth-child(even) .timeline-content {
-    left: -1rem;
+    left: -16px;
 }
 
 .timeline-content::before {
@@ -342,8 +342,8 @@ p {
 }
 .contact a {
     display: inline-block;
-    margin: 0.5rem;
-    padding: 0.5rem 1rem;
+    margin: 8px;
+    padding: 8px 16px;
     border: 2px solid var(--md-sys-color-on-surface);
     border-radius: 6px;
     text-decoration: none;
@@ -357,8 +357,8 @@ p {
 }
 
 footer {
-    padding: 2rem;
+    padding: 32px;
     text-align: center;
     background: var(--md-sys-color-surface-container-high);
-    margin-top: 2rem;
+    margin-top: 32px;
 }
