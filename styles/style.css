@@ -1,229 +1,364 @@
 html {
     scroll-behavior: smooth;
 }
-body{
+
+/* Custom dynamic color-inspired palette */
+:root {
+    --md-sys-color-primary: #00AEEF;
+    /* A vibrant blue */
+    --md-sys-color-on-primary: #FFFFFF;
+    --md-sys-color-surface: #1a1a1a;
+    /* Dark gray for background, from your styles */
+    --md-sys-color-on-surface: #f4f4f5;
+    /* Soft off-white for text, from your styles */
+    --md-sys-color-surface-container-high: #2a2a2a;
+    /* Slightly lighter gray for cards, from your styles */
+    --md-sys-color-on-surface-variant: #BDBDBD;
+    --md-sys-color-accent: #60a5fa;
+    /* Your accent color */
+}
+
+body {
+    background-color: var(--md-sys-color-surface);
+    color: var(--md-sys-color-on-surface);
+    font-family: 'Inter', sans-serif;
+}
+
+.text-md-primary {
+    color: var(--md-sys-color-primary);
+}
+
+.bg-md-surface {
+    background-color: var(--md-sys-color-surface);
+}
+
+.text-md-on-surface {
+    color: var(--md-sys-color-on-surface);
+}
+
+.bg-md-surface-container-high {
+    background-color: var(--md-sys-color-surface-container-high);
+}
+
+.text-md-on-surface-variant {
+    color: var(--md-sys-color-on-surface-variant);
+}
+
+/* Your custom CSS is moved here to be in one place */
+* {
     margin: 0;
-    background-color: rgb(199, 255, 255);
-    font-family: Sans-Serif;
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
-}
-/*Chrome safari and opera*/
-body::-webkit-scrollbar {
-    display: none;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-
-
-h1{
-    text-align: center;
-    font-size: 2.5vw;
-}
-#about{
-    text-align: center;
-    font-size: 4vh;
-    height: 100vh;
-    background:
-        /* top, transparent black, faked with gradient */ 
-        linear-gradient(
-        rgba(0, 0, 0, 0.8), 
-        rgba(0, 29, 116, 0.8),
-        rgba(0,0,0,0.8)
-        ),
-        url("../assets/pillars-of-creation-webb-min.webp");
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    color: white;
-}
-.gradright{
-    background: linear-gradient(to right, rgba(255,255,255,0.0), rgba(0,0,0,0.8));
-    background-size: 100vw fit-content;
-}
-.gradleft{
-    background: linear-gradient(to left, rgba(255,255,255,0.0), rgba(0,0,0,0.8));
-    background-size: 100vw fit-content;
-}
-.projcont{
-    margin-top: 0%;
-    position: relative;
-    width: 100vw;
-    height: fit-content;
-    padding-bottom: 20%;
-    color: white;
-}
-.projcont .right{
-    text-align: right;
-}
-.projcont .left{
-    text-align: left;
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: var(--md-sys-color-surface);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
 }
 
-#projects{
-    display:flex;
-    flex-direction: column;
-    
-    background:
-        /* top, transparent black, faked with gradient */ 
-        linear-gradient(
-        rgba(0,0,0,0.7),
-        rgba(30, 38, 61, 0.8), 
-        rgba(0, 29, 116, 0.8), 
-        rgba(0, 10, 143, 0.8)
-        ),
-        url("../assets/cosmic_clifs.jpg");
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-
-    padding: 0%;
-    margin: 0%;
-}
-.projectImg{
-    height: 15vw;
-    width:auto;
-    border-radius: 100%;
-    clip-path: circle();
-}
-.right{
-    position:absolute;
-    right:2vw;
-    text-align: left;
-}
-.left{
-    position:absolute;
-    left:2vw;
-    text-align: right;
+nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    list-style: none;
+    padding: 1rem;
 }
 
-
-h2{
-    font-size: 3vw;
-}
-h5{
-    font-size: 1.75vw;
-}
-
-.begin{
-    height: 100vh;
-    background:
-        /* top, transparent black, faked with gradient */ 
-        linear-gradient(
-        rgba(105, 105, 105, 0.8), 
-        rgba(0, 0, 0, 0.8)
-        ),
-        /* bottom, image */
-        url("../assets/begin_back.png");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    color: white;
-    flex-wrap: wrap-reverse;
-    align-content: center;
-    font-size: xx-large;
-    text-align: center;
-    margin: 0;
-}
-
-.textcont{
-    width: 70%;
-    word-wrap: normal;
-}
-#pfp{
-    border-radius: 100%;
-    clip-path: circle();
-    width: 20%; 
-    height:auto;
-}
-
-.query{
-    position: relative;
-    left: 10%;
-    margin-left: -50px;
-    width: 87vw;
-    height: 10vh;
-    text-align: center;
-    font-size: x-large;
-    padding-bottom: 2%;
-}
-#query{
-    text-align: center;
-    width:60vw;
-    height: 10vh;
-    font-size: x-large;
-    padding:10px;
-    border-radius:30px;
-    box-shadow:0 0 15px 4px rgba(34, 34, 34, 0.308);
-}
-  
-#submit{
-    height: 5vh;
-    width: 3vw;
-    min-width: 50px;
-    font-size: large;
-}
-
-.output{
-    position: relative;
-    text-align: center;
-    left: 25%;
-    width: 50vw;
-    font-size: xx-large;
-}
-#scroll{
-    text-align: right;
-}
-
-.projcont a{
-    color:white;
-}
-
-.projcont a:hover{
-    background-color: red;
-}
-.projecttitle{
-    color:white;
-    font-size: 6vh;
-}
-
-
-/* Add a black background color to the top navigation */
-.topnav {
-    background-color: rgba(0,0,0,0.8);
-    position: fixed; 
-    top: 0px; 
-    left: 0px;
-    width: 100vw;
-    height: auto;
-    z-index: 500;
-}
-  
-  /* Style the links inside the navigation bar */
-.topnav a {
-    float: left;
-    display: block;
-    color: #ffffff;
-    text-align: center;
-    padding: 14px 16px;
+nav a {
     text-decoration: none;
-    font-size: 17px;
+    color: var(--md-sys-color-on-surface);
+    font-weight: 600;
+    transition: color 0.3s;
 }
-  
-  /* Change the color of links on hover */
-.topnav a:hover {
-    background-color: #ddd;
-    color: black;
+
+nav a:hover {
+    color: var(--md-sys-color-accent);
 }
-  
-  /* Add an active class to highlight the current page */
-.topnav a.active {
-    background-color: #ff7360;
+
+section {
+    min-height: 100vh;
+    padding: 5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../assets/cosmic_clifs.jpg");
+    background-position: center top;
+    color: white;
+    background-size: cover;
+}
+
+.hero a {
+    background: var(--md-sys-color-accent);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s, color 0.3s;
+}
+
+.transition1 {
+    position: relative;
+    height: 100px;
+    background: linear-gradient(to bottom, transparent, var(--md-sys-color-surface));
+    margin-top: -100px;
+}
+
+#about {
+    background: var(--md-sys-color-surface);
+}
+
+.transition2 {
+    position: relative;
+    height: 100px;
+    background: linear-gradient(to bottom, transparent, #023335);
+    margin-top: -100px;
+}
+
+#experience {
+    background: #078d92;
+    background-image: repeating-linear-gradient(90deg,
+            rgba(255, 255, 255, 0.05) 0px,
+            rgba(255, 255, 255, 0.05) 2px,
+            transparent 2px,
+            transparent 40px);
+}
+
+.transition3 {
+    position: relative;
+    height: 100px;
+    background: linear-gradient(to bottom, transparent, #16b913);
+    margin-top: -100px;
+}
+
+#timeline {
+    background: #16b913;
+    background-image:
+        repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.05) 0px, rgba(255, 255, 255, 0.05) 2px, transparent 2px, transparent 40px),
+        repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.05) 0px, rgba(255, 255, 255, 0.05) 2px, transparent 2px, transparent 40px);
+}
+
+#timeline h2 {
     color: rgb(0, 0, 0);
 }
-  
-  /* Hide the link that should open and close the topnav on small screens */
-.topnav .icon {
-    display: none;
+
+.transition4 {
+    position: relative;
+    height: 100px;
+    background: linear-gradient(to bottom, transparent, rgb(226, 182, 6));
+    margin-top: -100px;
+}
+
+#contact {
+    background: rgb(226, 182, 6);
+    background-image: repeating-linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.04) 0px,
+        rgba(255, 255, 255, 0.04) 10px,
+        transparent 4px,
+        transparent 40px
+    );
+}
+
+#contact h2 {
+    color: black;
+}
+
+h1,
+h2 {
+    margin-bottom: 1rem;
+}
+
+h1 {
+    font-size: 6rem;
+}
+
+h2 {
+    font-size: 4rem;
+    color: black;
+}
+h3{
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+p {
+    max-width: 700px;
+    margin-bottom: 2rem;
+}
+
+.hero h1 span {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s forwards;
+}
+
+.hero h1 span:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.hero h1 span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.hero h1 span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 1000px;
+}
+
+.card {
+    background: var(--md-sys-color-surface-container-high);
+    color: var(--md-sys-color-on-surface);
+    padding: 2rem;
+    border-radius: 12px;
+    transition: transform 0.3s, 0.3s, color 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    background: var(--md-sys-color-accent);
+    color: var(--md-sys-color-on-primary);
+}
+
+.card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.card-link:hover .card {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.timeline {
+    position: relative;
+    max-width: 700px;
+    margin: 2rem auto;
+    padding-bottom: 2rem;
+}
+
+.timeline::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--md-sys-color-accent);
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 2rem;
+    padding-left: 50%;
+}
+
+.timeline-item:nth-child(even) {
+    padding-left: 0;
+    padding-right: 50%;
+    text-align: right;
+}
+
+.timeline-item::after {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background-color: var(--md-sys-color-accent);
+    border: 3px solid var(--md-sys-color-on-surface);
+    top: 50%;
+    border-radius: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    z-index: 2;
+}
+
+.timeline-content {
+    background: var(--md-sys-color-surface-container-high);
+    color: var(--md-sys-color-on-surface);
+    padding: 1rem;
+    border-radius: 8px;
+    display: inline-block;
+    max-width: 300px;
+    position: relative;
+    left: 1rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.timeline-item:nth-child(even) .timeline-content {
+    left: -1rem;
+}
+
+.timeline-content::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10px;
+    border-color: transparent var(--md-sys-color-surface-container-high) transparent transparent;
+    left: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.timeline-item:nth-child(even) .timeline-content::before {
+    border-color: transparent transparent transparent var(--md-sys-color-surface-container-high);
+    right: -20px;
+    left: auto;
+}
+
+.timeline-content:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+.contact a {
+    display: inline-block;
+    margin: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: 2px solid var(--md-sys-color-on-surface);
+    border-radius: 6px;
+    text-decoration: none;
+    color: var(--md-sys-color-on-surface);
+    transition: 0.3s, color 0.3s;
+}
+
+.contact a:hover {
+    background: var(--md-sys-color-on-surface);
+    color: var(--md-sys-color-surface);
+}
+
+footer {
+    padding: 2rem;
+    text-align: center;
+    background: var(--md-sys-color-surface-container-high);
+    margin-top: 2rem;
 }

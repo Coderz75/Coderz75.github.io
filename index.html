@@ -1,46 +1,204 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>Coderz75</title>
-    <link href="styles/style.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9158757378309809"
-     crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuaym Syed | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles/style.css">
 </head>
-
-<body>
-    <div id = "topnav" class = "topnav">
-        <a href="#home" class="active">🚀Coderz75</a>
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-          <i class="fa fa-bars"></i>
-        </a>      
-    </div>
-    <div class = "actual_body">
-    <div class = "begin" id = "home">
-        <br><br><br>
-        <img id = "pfp" src = "assets/pfp.jpg"><br>
-        <h1 id = "intro"></h1>
-        <h2 id = "intro-info"></h2>
-        <h5 id = "quote"></h5> <h5 id = "scroll"></h5>
-    </div>
+<body class="min-h-screen">
     
-
-    <div id = "about">
-    </div>
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#timeline">Timeline</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
     
-    <div id = "projects">
-        
-    </div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/universal-sentence-encoder"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <!-- Adds the WASM backend to the global backend registry -->
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-wasm/dist/tf-backend-wasm.js"></script>
-    <script src = "script/script.js"></script>
+    <section id="home" class="hero">
+        <h1>
+            <span>Nuaym</span>
+            <span>Syed</span>
+        </h1>
+        <p>Aspiring Engineer & Developer | University of Washington Seattle</p>
+        <a href="#experience" class="contact">View My Work</a>
+    </section>
+    
+    <div class="transition1"></div>
+    
+    <section id="about" class="min-h-screen flex items-center justify-center p-4">
+        <div class="w-full max-w-7xl mx-auto md:flex md:space-x-8 lg:space-x-12">
+            <div class="bg-md-surface-container-high p-8 rounded-3xl shadow-lg flex-grow mb-8 md:mb-0">
+                <div class="mb-6">
+                    <h1 class="text-4xl md:text-5xl font-bold text-md-primary mb-2">About Me</h1>
+                    <p class="text-lg md:text-xl text-md-on-surface-variant">A little bit about my journey and passions.</p>
+                </div>
+                <div class="space-y-6 text-base md:text-lg">
+                    <p>I started my programming journey when I was in second grade, learning node.js. From there, my journey across STEM disiplines begun.</p>
+                    <p>I have partook projects varying from Hardware to Software, languages varying from Java to GLSL, working diligently and ensuring quality every step of the way.</p>
+                    <p>Working across disciplines in programming, engineering, teaching, and others, I am actively seeking opportunities to apply my knowledge in real-world scenarios and collaborate with like-minded individuals to solve complex problems.</p>
+                </div>
+            </div>
+            <div class="bg-md-surface-container-high p-8 rounded-3xl shadow-lg md:w-1/3 flex flex-col items-center">
+                <div class="rounded-full overflow-hidden w-40 h-40 mb-6 border-4 border-md-primary shadow-md">
+                    <img src="./assets/pfp.jpg" alt="Your professional headshot" class="w-full h-full object-cover">
+                </div>
+
+                <div class="text-center w-full">
+                    <h3 class="text-2xl font-bold mb-4 text-md-primary">My Skills</h3>
+                    <ul class="space-y-2 text-md-on-surface-variant">
+                        <li class="flex items-center justify-center space-x-2">
+                            <span class="text-2xl">💻</span>
+                            <span>Software Development</span>
+                        </li>
+                        <li class="flex items-center justify-center space-x-2">
+                            <span class="text-2xl">🎓</span>
+                            <span>Teaching</span>
+                        </li>
+                        <li class="flex items-center justify-center space-x-2">
+                            <span class="text-2xl">🤖</span>
+                            <span>Robotics</span>
+                        </li>
+                        <li class="flex items-center justify-center space-x-2">
+                            <span class="text-2xl">🧠</span>
+                            <span>Problem-Solving</span>
+                        </li>
+                        <li class="flex items-center justify-center space-x-2">
+                            <span class="text-2xl">🎨</span>
+                            <span>Creative Design</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <div class="transition2"></div>
+    
+    <section id="experience">
+        <h2>Experience</h2>
+        <div class="card-grid">
+            <a href="https://github.com/hongyiRen2009/Terrain-Generator-With-Raycasting/" target="_blank" class="card-link">
+                <div class="card">
+                    <h3>G.R.A.S.</h3>
+                    <p>Lead Pathtracing developer on 3D rendering engine for web with high accuracy visualization.</p>
+                </div>
+            </a>
+            <a href="https://devpost.com/software/evolution-j9x7gq" target="_blank" class="card-link">
+                <div class="card">
+                    <h3>Uprooted</h3>
+                    <p>Best-Functionality winner at a school-wide hackathon, Uprooted is a game simulating speciation and evolution due to natural disasters.</p>
+                </div>
+            </a>
+            <a href="https://github.com/SaintsRobotics" target="_blank" class="card-link">
+                <div class="card">
+                    <h3>Robotics Programming</h3>
+                    <p>Developed autonomous routines for world-competing FRC robots</p>
+                </div>
+            </a>
+            <a href="" target="_blank" class="card-link">
+                <div class="card">
+                    <h3>Science Bowl Coaching</h3>
+                    <p>Worked with a team of coaches to create lectures, homework, and practice problems regarding STEM for middle school students in preparation for the National Science Bowl Tournament.</p>
+                </div>
+            </a>
+            <a href="https://coderz75.github.io/Science-Moon-Model/" target="_blank" class="card-link">
+                <div class="card">
+                    <h3>Science Moon Model</h3>
+                    <p>A fun little project to test out the three.js library. Also meant to be a science project for my school</p>
+                </div>
+            </a>
+            <a href="https://coderz75.github.io/Runlang/" target="_blank" class="card-link">
+                <div class="card">
+                    <h3>Runlang</h3>
+                    <p>Runlang is a feature rich coding language based on c++. It is cross compatible, plus has many extra features previously visible in the now archived slackerz c++ package</p>
+                </div>
+            </a>
+            <a href="https://coderz75.github.io/A-Lang/" target="_blank" class="card-link">
+                <div class="card">
+                    <h3>A-Lang</h3>
+                    <p>An esoteric coding language purposely made to be very stupid and incomplete. This was made with the stereotype that asians are smart (however an improper stereotype) and essentially trys to put majority of the code on the coder.</p>
+                </div>
+            </a>
+            <a href="https://coderz75.github.io/sciencebowlbotai/" target="_blank" class="card-link">
+                <div class="card">
+                    <h3>Science Bowl Bot AI</h3>
+                    <p>Essentially a little project to test out tensorflow AI. Uses AI to filter through the large catalog of national science bowl question and answer hundreds of possible science questions</p>
+                </div>
+            </a>
+            <a href="https://coderz75.github.io/IPC-Winter-Hackathon/" target="_blank" class="card-link">
+                <div class="card">
+                    <h3>Immune-Quest</h3>
+                    <p>Best-design winner at a school-wide hackathon, you are a white blood cell in your hosts body tasked with defending it from infections</p>
+                </div>
+            </a>
+            <a href="https://github.com/Coderz75/SciencebBuzzerBot" target="_blank" class="card-link">
+                <div class="card">
+                    <h3>ScienceBuzzerBot</h3>
+                    <p>Simulate a science bowl round on discord! Featuring a point system, a large library of questions, and is completely centered around the ruled of national science bowl</p>
+                </div>
+            </a>
+        </div>
+    </section>
+    
+    <div class="transition3"></div>
+    
+    <section id="timeline">
+        <h2>Timeline</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content"><b>Sep. 2025</b><br>Began College at the University of Washington Seattle</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content"><b>Mar. 2025</b><br>Began working on G.R.A.S</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content"><b>Feb. 2025</b><br>Uprooted "Best Functionality" Winner</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content"><b>Sep. 2025</b><br>Science Bowl Coach for middle school science club</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content"><b>April. 2024</b><br> FRC Worlds</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content"><b>Feburary. 2024</b><br> Immune Quest "Best design" Co-Winner</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content"><b>Sep. 2023</b><br> Began FRC Robotics Programming</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content"><b>2018-2023</b><br> Exploration<br>Made a lot of small projects</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content"><b>Summer 2018</b><br> "Hello Internet" (first website)</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content"><b>Summer 2017</b><br> "Hello World"</div>
+            </div>
+        </div>
+    </section>
+    
+    <div class="transition4"></div>
+    
+    <section id="contact">
+        <h2>Contact</h2>
+        <div class="contact">
+            <a href="mailto:n.syed.dev@gmail.com">Email</a>
+            <a href="https://linkedin.com/in/nuaym-syed" target="_blank">LinkedIn</a>
+            <a href="https://github.com/Coderz75" target="_blank">GitHub</a>
+        </div>
+    </section>
+    
+    <footer>
+        © 2025 Nuaym Syed — All Rights Reserved
+    </footer>
+    
 </body>
 </html>
