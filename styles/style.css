@@ -1,12 +1,21 @@
+html {
+    scroll-behavior: smooth;
+}
+
 /* Custom dynamic color-inspired palette */
 :root {
-    --md-sys-color-primary: #00AEEF; /* A vibrant blue */
+    --md-sys-color-primary: #00AEEF;
+    /* A vibrant blue */
     --md-sys-color-on-primary: #FFFFFF;
-    --md-sys-color-surface: #1a1a1a; /* Dark gray for background, from your styles */
-    --md-sys-color-on-surface: #f4f4f5; /* Soft off-white for text, from your styles */
-    --md-sys-color-surface-container-high: #2a2a2a; /* Slightly lighter gray for cards, from your styles */
+    --md-sys-color-surface: #1a1a1a;
+    /* Dark gray for background, from your styles */
+    --md-sys-color-on-surface: #f4f4f5;
+    /* Soft off-white for text, from your styles */
+    --md-sys-color-surface-container-high: #2a2a2a;
+    /* Slightly lighter gray for cards, from your styles */
     --md-sys-color-on-surface-variant: #BDBDBD;
-    --md-sys-color-accent: #60a5fa; /* Your accent color */
+    --md-sys-color-accent: #60a5fa;
+    /* Your accent color */
 }
 
 body {
@@ -18,15 +27,19 @@ body {
 .text-md-primary {
     color: var(--md-sys-color-primary);
 }
+
 .bg-md-surface {
     background-color: var(--md-sys-color-surface);
 }
+
 .text-md-on-surface {
     color: var(--md-sys-color-on-surface);
 }
+
 .bg-md-surface-container-high {
     background-color: var(--md-sys-color-surface-container-high);
 }
+
 .text-md-on-surface-variant {
     color: var(--md-sys-color-on-surface-variant);
 }
@@ -114,14 +127,13 @@ section {
 
 #experience {
     background: #023335;
-    background-image: repeating-linear-gradient(
-        90deg,
-        rgba(255, 255, 255, 0.05) 0px,
-        rgba(255, 255, 255, 0.05) 2px,
-        transparent 2px,
-        transparent 40px
-    );
+    background-image: repeating-linear-gradient(90deg,
+            rgba(255, 255, 255, 0.05) 0px,
+            rgba(255, 255, 255, 0.05) 2px,
+            transparent 2px,
+            transparent 40px);
 }
+
 .transition3 {
     position: relative;
     height: 100px;
@@ -131,9 +143,9 @@ section {
 
 #timeline {
     background: #073d06;
-    background-image: 
-    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.05) 0px, rgba(255, 255, 255, 0.05) 2px, transparent 2px, transparent 40px),
-    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.05) 0px, rgba(255, 255, 255, 0.05) 2px, transparent 2px, transparent 40px);
+    background-image:
+        repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.05) 0px, rgba(255, 255, 255, 0.05) 2px, transparent 2px, transparent 40px),
+        repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.05) 0px, rgba(255, 255, 255, 0.05) 2px, transparent 2px, transparent 40px);
 }
 
 #timeline h2 {
@@ -149,22 +161,35 @@ section {
 
 #contact {
     background: rgb(226, 182, 6);
+    background-image: repeating-linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.04) 0px,
+        rgba(255, 255, 255, 0.04) 10px,
+        transparent 4px,
+        transparent 40px
+    );
 }
+
 #contact h2 {
     color: black;
 }
 
-h1, h2 {
+h1,
+h2 {
     margin-bottom: 1rem;
 }
 
 h1 {
-    font-size: 3rem;
+    font-size: 6rem;
 }
 
 h2 {
     font-size: 4rem;
     color: var(--md-sys-color-accent);
+}
+h3{
+    font-size: 1rem;
+    font-weight: bold;
 }
 
 p {
@@ -211,7 +236,7 @@ p {
     color: var(--md-sys-color-on-surface);
     padding: 2rem;
     border-radius: 12px;
-    transition: transform 0.3s, background 0.3s, color 0.3s;
+    transition: transform 0.3s, 0.3s, color 0.3s;
 }
 
 .card:hover {
