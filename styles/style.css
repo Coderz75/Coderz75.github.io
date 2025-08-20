@@ -233,7 +233,7 @@ p {
     background: var(--card);
     padding: 2rem;
     border-radius: 12px;
-    transition: transform 0.3s, background 0.3s;
+    transition: transform 0.3s, 0.3s;
 }
 
 .card:hover {
