@@ -126,7 +126,7 @@ section {
 }
 
 #experience {
-    background: #023335;
+    background: #078d92;
     background-image: repeating-linear-gradient(90deg,
             rgba(255, 255, 255, 0.05) 0px,
             rgba(255, 255, 255, 0.05) 2px,
@@ -137,25 +137,25 @@ section {
 .transition3 {
     position: relative;
     height: 100px;
-    background: linear-gradient(to bottom, transparent, #073d06);
+    background: linear-gradient(to bottom, transparent, #16b913);
     margin-top: -100px;
 }
 
 #timeline {
-    background: #073d06;
+    background: #16b913;
     background-image:
         repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.05) 0px, rgba(255, 255, 255, 0.05) 2px, transparent 2px, transparent 40px),
         repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.05) 0px, rgba(255, 255, 255, 0.05) 2px, transparent 2px, transparent 40px);
 }
 
 #timeline h2 {
-    color: rgb(30, 255, 0);
+    color: rgb(0, 0, 0);
 }
 
 .transition4 {
     position: relative;
     height: 100px;
-    background: linear-gradient(to bottom, transparent, rgb(182, 146, 5));
+    background: linear-gradient(to bottom, transparent, rgb(226, 182, 6));
     margin-top: -100px;
 }
 
@@ -185,7 +185,7 @@ h1 {
 
 h2 {
     font-size: 4rem;
-    color: var(--md-sys-color-accent);
+    color: black;
 }
 h3{
     font-size: 1rem;
