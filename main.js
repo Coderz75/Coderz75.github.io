@@ -162,7 +162,6 @@ async function renderProjects(filter = 'All') {
         return;
     }
 
-    // 1. Combine tech and tags to generate the filter buttons
     const allTags = ['All', ...new Set(projects.flatMap(p => [...(p.tags || []), ...(p.tech || [])]))];
     
     const filterHtml = allTags.map(tag => `
@@ -172,7 +171,6 @@ async function renderProjects(filter = 'All') {
     `).join('');
     setHtml('project-filters', filterHtml);
 
-    // 2. Filter logic: check if the selected filter exists in EITHER tech or tags
     const filtered = filter === 'All' 
         ? projects 
         : projects.filter(p => [...(p.tags || []), ...(p.tech || [])].includes(filter));
@@ -180,12 +178,10 @@ async function renderProjects(filter = 'All') {
     const gridHtml = filtered.map(p => {
         const readMoreLink = p.customLink ? p.customLink : `post.html?type=project&slug=${p.slug}`;
         const readMoreTarget = p.customLink && p.customLink.startsWith('http') ? 'target="_blank" rel="noopener noreferrer"' : '';
-
-        // 3. Combine tech and tags for the badges on the card (removing duplicates)
         const combinedBadges = [...new Set([...(p.tech || []), ...(p.tags || [])])];
 
         return `
-        <div class="group relative bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden hover:shadow-2xl hover:shadow-indigo-500/10 transition-all duration-300 ${p.featured ? 'md:col-span-2' : ''}">
+        <div class="group relative z-0 bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden hover:shadow-2xl hover:shadow-indigo-500/10 transition-all duration-300 ${p.featured ? 'md:col-span-2' : ''}">
             <div class="h-64 overflow-hidden">
                 <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
             </div>
@@ -195,11 +191,18 @@ async function renderProjects(filter = 'All') {
                 </div>
                 <h3 class="text-2xl font-bold mb-3 group-hover:text-indigo-400 transition-colors">${p.title}</h3>
                 <p class="text-slate-400 mb-6 line-clamp-2">${p.description}</p>
+                
                 <div class="flex space-x-4 items-center">
-                    <a href="${p.github}" target="_blank" class="text-slate-300 hover:text-white"><i data-lucide="github" class="w-5 h-5"></i></a>
-                    ${p.demo ? `<a href="${p.demo}" target="_blank" class="text-slate-300 hover:text-white"><i data-lucide="external-link" class="w-5 h-5"></i></a>` : ''}
+                    <!-- GitHub and Demo container gets 'relative z-20' so they stay safely on top of the giant card overlay -->
+                    <div class="flex space-x-4 items-center relative z-20">
+                        <a href="${p.github}" target="_blank" class="text-slate-300 hover:text-white">
+                            <i data-lucide="github" class="w-5 h-5"></i>
+                        </a>
+                        ${p.demo ? `<a href="${p.demo}" target="_blank" class="text-slate-300 hover:text-white"><i data-lucide="external-link" class="w-5 h-5"></i></a>` : ''}
+                    </div>
                     
-                    <a href="${readMoreLink}" ${readMoreTarget} class="ml-auto text-indigo-400 hover:text-indigo-300 text-sm flex items-center gap-1 transition-colors">
+                    <!-- Added 'z-10' to the link. The 'after:z-10' utility explicitly forces the invisible card-wide link wrapper above the background text/images -->
+                    <a href="${readMoreLink}" ${readMoreTarget} class="ml-auto text-indigo-400 hover:text-indigo-300 text-sm flex items-center gap-1 transition-colors after:absolute after:inset-0 after:z-10">
                         See More <i data-lucide="arrow-right" class="w-4 h-4"></i>
                     </a>
                 </div>
