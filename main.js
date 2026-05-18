@@ -25,7 +25,14 @@ const setHtml = (id, html) => {
 };
 
 function renderNavbar() {
-    document.getElementById('nav-logo').textContent = profileData.profile.name.split(' ')[0];
+    const navLogoContainer = document.getElementById('nav-logo');
+    const firstName = profileData.profile.name.split(' ')[0];
+    navLogoContainer.innerHTML = `
+        <div class="flex items-center gap-2">
+            <img src="assets/pfp_line_small.png" alt="Logo" class="w-8 h-8 object-cover rounded-full">
+            <span>${firstName}</span>
+        </div>
+    `;
     const navItems = ['About', 'Skills', 'Projects', 'Experience', 'Writing', 'Contact'];
     const linksHtml = navItems.map(item => `
         <a href="#${item.toLowerCase()}" class="nav-link transition-colors hover:text-white">${item}</a>
