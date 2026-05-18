@@ -1,13 +1,88 @@
 [
   {
-    "slug": "coming-soon",
-    "title": "Coming Soon",
-    "description": "Profile update coming soon",
-    "tech": ["C++", "WPILib"],
-    "image": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=800",
-    "github": "https://github.com/Coderz75/your-repo",
-    "demo": "",
-    "tags": ["Robotics"],
+    "slug": "g-r-a-s",
+    "title": "GRAS",
+    "description": "High-quality web-based renderer",
+    "tech": ["WebGL", "WebGPU","Javascript","BVH"],
+    "image": "./assets/g.r.a.s.png",
+    "github": "https://github.com/hongyiRen2009/Terrain-Generator-With-Raycasting/",
+    "demo": "https://terrain-generator-with-raycasting.vercel.app/",
+    "tags": [],
     "featured": true
+  },
+  {
+    "slug": "uprooted",
+    "title": "Uprooted",
+    "description": "Best-Functionality winner at a school-wide hackathon, Uprooted is a game simulating speciation and evolution due to natural disasters.",
+    "tech": ["fakerjs","figma","font-awesome","git","html5","htmlcanvas","javascript","python","svgs","treantjs"],
+    "image": "./assets/uprooted.png",
+    "github": "https://github.com/Coderz75/IPC-WINTER-HACKATHON-2025",
+    "demo": "https://coderz75.github.io/IPC-WINTER-HACKATHON-2025/",
+    "customLink": "https://devpost.com/software/evolution-j9x7gq",
+    "tags": [],
+    "featured": false
+  },
+
+  {
+    "slug": "runlang",
+    "title": "RunLang",
+    "description": "Runlang is a feature rich coding language based on c++. It is cross compatible, plus has many extra features previously visible in the now archived slackerz c++ package.",
+    "tech": ["python"],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/5/5a/Programming.jpg",
+    "github": "https://github.com/coderz75/runlang",
+    "demo": "",
+    "customLink": "https://coderz75.github.io/Runlang/",
+    "tags": [],
+    "featured": false
+  },
+  {
+    "slug": "science-moon-model",
+    "title": "Science Moon Model",
+    "description": "A fun little project to test out the three.js library. Also meant to be a science project for my school.",
+    "tech": ["three.js"],
+    "image": "./assets/moon-model.png",
+    "github": "https://github.com/coderz75/science-moon-model",
+    "demo": "",
+    "customLink": "https://coderz75.github.io/Science-Moon-Model/",
+    "tags": [],
+    "featured": false
+  },
+  
+  {
+    "slug": "immune-quest",
+    "title": "Immune Quest",
+    "description": "Best-design winner at a school-wide hackathon, you are a white blood cell in your hosts body tasked with defending it from infections.",
+    "tech": ["htmlcanvas"],
+    "image": "./assets/immune-quest.png",
+    "github": "https://github.com/Coderz75/IPC-Winter-Hackathon",
+    "demo": "https://coderz75.github.io/IPC-Winter-Hackathon/",
+    "customLink": "https://devpost.com/software/immune-quest",
+    "tags": [],
+    "featured": false
+  },
+
+  {
+    "slug": "science-bowl-bot-ai",
+    "title": "Science Bowl Bot AI",
+    "description": "Essentially a little project to test out tensorflow AI. Uses AI to filter through the large catalog of national science bowl question and answer hundreds of possible science questions.",
+    "tech": ["tenserflow"],
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjYFVI-F2tVneBmy6W7Wl-9cwlsTgzFjq9DQ&s",
+    "github": "https://github.com/Coderz75/sciencebowlbotai",
+    "demo": "",
+    "customLink": "https://coderz75.github.io/sciencebowlbotai/",
+    "tags": [],
+    "featured": false
+  },
+
+  {
+    "slug": "alang",
+    "title": "A-Lang",
+    "description": "An esoteric programming languages focused on making life as hard as possible!",
+    "tech": ["C++"],
+    "image": "https://raw.githubusercontent.com/Coderz75/A-Lang/refs/heads/main/img/logo.jpg",
+    "github": "https://github.com/Coderz75/A-Lang",
+    "tags": [],
+    "featured": false,
+    "customLink": "https://coderz75.github.io/A-Lang/" 
   }
 ]

@@ -1,0 +1,2 @@
+# G.R.A.S
+G.R.A.S is a high quality web based renderer. I am the lead worker on the pathtracer, however my teammates work on terrain generation and the raster. Currently it is not finished, but once it will be, we hope it to be a complete high quality web-based renderer that can be used for cinemetography purposes.

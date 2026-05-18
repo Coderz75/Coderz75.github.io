@@ -155,7 +155,9 @@ async function renderProjects(filter = 'All') {
         return;
     }
 
-    const allTags = ['All', ...new Set(projects.flatMap(p => p.tags))];
+    // 1. Combine tech and tags to generate the filter buttons
+    const allTags = ['All', ...new Set(projects.flatMap(p => [...(p.tags || []), ...(p.tech || [])]))];
+    
     const filterHtml = allTags.map(tag => `
         <button onclick="renderProjects('${tag}')" class="px-4 py-1.5 rounded-full text-xs font-medium border ${filter === tag ? 'bg-indigo-500 border-indigo-500 text-white' : 'border-slate-800 text-slate-400 hover:border-slate-600'} transition-all">
             ${tag}
@@ -163,29 +165,41 @@ async function renderProjects(filter = 'All') {
     `).join('');
     setHtml('project-filters', filterHtml);
 
-    const filtered = filter === 'All' ? projects : projects.filter(p => p.tags.includes(filter));
+    // 2. Filter logic: check if the selected filter exists in EITHER tech or tags
+    const filtered = filter === 'All' 
+        ? projects 
+        : projects.filter(p => [...(p.tags || []), ...(p.tech || [])].includes(filter));
 
-    const gridHtml = filtered.map(p => `
+    const gridHtml = filtered.map(p => {
+        const readMoreLink = p.customLink ? p.customLink : `post.html?type=project&slug=${p.slug}`;
+        const readMoreTarget = p.customLink && p.customLink.startsWith('http') ? 'target="_blank" rel="noopener noreferrer"' : '';
+
+        // 3. Combine tech and tags for the badges on the card (removing duplicates)
+        const combinedBadges = [...new Set([...(p.tech || []), ...(p.tags || [])])];
+
+        return `
         <div class="group relative bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden hover:shadow-2xl hover:shadow-indigo-500/10 transition-all duration-300 ${p.featured ? 'md:col-span-2' : ''}">
             <div class="h-64 overflow-hidden">
                 <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
             </div>
             <div class="p-8">
                 <div class="flex flex-wrap gap-2 mb-4">
-                    ${p.tech.map(t => `<span class="text-[10px] font-mono text-indigo-400 uppercase">${t}</span>`).join(' • ')}
+                    ${combinedBadges.map(item => `<span class="text-[10px] font-mono text-indigo-400 uppercase">${item}</span>`).join(' • ')}
                 </div>
                 <h3 class="text-2xl font-bold mb-3 group-hover:text-indigo-400 transition-colors">${p.title}</h3>
                 <p class="text-slate-400 mb-6 line-clamp-2">${p.description}</p>
                 <div class="flex space-x-4 items-center">
                     <a href="${p.github}" target="_blank" class="text-slate-300 hover:text-white"><i data-lucide="github" class="w-5 h-5"></i></a>
                     ${p.demo ? `<a href="${p.demo}" target="_blank" class="text-slate-300 hover:text-white"><i data-lucide="external-link" class="w-5 h-5"></i></a>` : ''}
-                    <a href="post.html?type=project&slug=${p.slug}" class="ml-auto text-indigo-400 hover:text-indigo-300 text-sm flex items-center gap-1 transition-colors">
-                        Read more <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    
+                    <a href="${readMoreLink}" ${readMoreTarget} class="ml-auto text-indigo-400 hover:text-indigo-300 text-sm flex items-center gap-1 transition-colors">
+                        See More <i data-lucide="arrow-right" class="w-4 h-4"></i>
                     </a>
                 </div>
             </div>
         </div>
-    `).join('');
+        `;
+    }).join('');
 
     setHtml('projects-grid', gridHtml);
     lucide.createIcons();

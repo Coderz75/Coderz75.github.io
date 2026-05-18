@@ -37,12 +37,23 @@ const profileData = {
     ],
     experience: [
         {
-            role: "Experience update coming soon!",
-            organization: "Soon",
+            role: "Mustang Math Software Developer",
+            organization: "Mustang Math",
             location: "Bellevue, WA",
-            date: "Date coming soon",
+            date: "July 2025 - Present",
             bullets: [
-                "Soon"
+                "A software developer at a non-profit organization focused on delivering tests, classes, and more to middle schoolers. ",
+                "Worked as a group in both server side and web-based frameworks to facilitate better data transfer with tools such as Supabase within and outside of the organization."
+            ]
+        },
+        {
+            role: "Tyee Science Club Coach",
+            organization: "Tyee Middle School",
+            location: "Bellevue, WA",
+            date: "Sep 2024 - Present",
+            bullets: [
+                "Worked with a team to create high school to college level lectures on a variety of disciplines: Earth and Space, Biology, Physics, Chemistry, Mathematics, Energy",
+                "Graded homework, trained National Science Bowl teams, and had a lot of fun!"
             ]
         },
     ],
