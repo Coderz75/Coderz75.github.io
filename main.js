@@ -105,8 +105,8 @@ async function renderBlog() {
     const cardsHtml = posts.map(post => `
         <a href="post.html?slug=${post.slug}" class="group block bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden hover:border-indigo-500/50 hover:shadow-xl hover:shadow-indigo-500/10 transition-all duration-300">
             <div class="p-8">
-                <div class="flex flex-wrap gap-2 mb-4">
-                    ${post.tags.map(t => `<span class="text-[10px] font-mono text-indigo-400 uppercase tracking-widest">${t}</span>`).join(' • ')}
+                <div class="flex flex-wrap items-center gap-2 mb-4">
+                    ${post.tags.map(t => `<span class="text-[10px] font-mono text-indigo-400 uppercase tracking-widest">${t}</span>`).join('<span class="text-[10px] text-slate-500">•</span>')}
                 </div>
                 <h3 class="text-xl font-bold mb-3 group-hover:text-indigo-400 transition-colors">${post.title}</h3>
                 <p class="text-slate-400 text-sm mb-6 line-clamp-2">${post.summary}</p>
@@ -183,8 +183,8 @@ async function renderProjects(filter = 'All') {
                 <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
             </div>
             <div class="p-8">
-                <div class="flex flex-wrap gap-2 mb-4">
-                    ${combinedBadges.map(item => `<span class="text-[10px] font-mono text-indigo-400 uppercase">${item}</span>`).join(' • ')}
+                <div class="flex flex-wrap items-center gap-2 mb-4">
+                    ${combinedBadges.map(item => `<span class="text-[10px] font-mono text-indigo-400 uppercase">${item}</span>`).join('<span class="text-[10px] text-slate-500">•</span>')}
                 </div>
                 <h3 class="text-2xl font-bold mb-3 group-hover:text-indigo-400 transition-colors">${p.title}</h3>
                 <p class="text-slate-400 mb-6 line-clamp-2">${p.description}</p>
