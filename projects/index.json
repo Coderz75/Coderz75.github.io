@@ -1,0 +1,13 @@
+[
+  {
+    "slug": "coming-soon",
+    "title": "Coming Soon",
+    "description": "Profile update coming soon",
+    "tech": ["C++", "WPILib"],
+    "image": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=800",
+    "github": "https://github.com/Coderz75/your-repo",
+    "demo": "",
+    "tags": ["Robotics"],
+    "featured": true
+  }
+]

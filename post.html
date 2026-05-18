@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading...</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="data.js"></script>
+
+    <style>
+        body { background-color: #020817; color: #e2e8f0; font-family: 'Georgia', serif; }
+
+        .prose { max-width: 72ch; }
+        .prose h1 { font-size: 2.5rem; font-weight: 800; color: #fff; margin: 2.5rem 0 1rem; font-family: system-ui, sans-serif; line-height: 1.15; }
+        .prose h2 { font-size: 1.6rem; font-weight: 700; color: #fff; margin: 2.5rem 0 0.75rem; font-family: system-ui, sans-serif; padding-bottom: 0.5rem; border-bottom: 1px solid #1e293b; }
+        .prose h3 { font-size: 1.2rem; font-weight: 600; color: #e2e8f0; margin: 2rem 0 0.5rem; font-family: system-ui, sans-serif; }
+        .prose p  { color: #94a3b8; line-height: 1.85; margin: 1.25rem 0; font-size: 1.05rem; }
+        .prose a  { color: #818cf8; text-decoration: underline; text-underline-offset: 3px; transition: color 0.15s; }
+        .prose a:hover { color: #a5b4fc; }
+        .prose ul, .prose ol { color: #94a3b8; padding-left: 1.5rem; margin: 1.25rem 0; line-height: 1.85; font-size: 1.05rem; }
+        .prose ul { list-style-type: disc; }
+        .prose ol { list-style-type: decimal; }
+        .prose li { margin: 0.4rem 0; }
+        .prose strong { color: #e2e8f0; font-weight: 600; }
+        .prose em { color: #cbd5e1; font-style: italic; }
+        .prose blockquote { border-left: 3px solid #4f46e5; padding: 0.75rem 1.25rem; margin: 1.5rem 0; background: #0f172a; border-radius: 0 0.5rem 0.5rem 0; }
+        .prose blockquote p { color: #94a3b8; margin: 0; font-style: italic; }
+        .prose code:not(pre code) { background: #1e293b; color: #a5b4fc; padding: 0.15em 0.4em; border-radius: 0.3rem; font-size: 0.9em; font-family: 'Fira Code', 'Consolas', monospace; }
+        .prose pre { background: #0f172a !important; border: 1px solid #1e293b; border-radius: 0.75rem; padding: 1.5rem; margin: 1.75rem 0; overflow-x: auto; }
+        .prose pre code { font-size: 0.88rem; font-family: 'Fira Code', 'Consolas', monospace; background: transparent !important; padding: 0; color: inherit; }
+        .prose hr { border: none; border-top: 1px solid #1e293b; margin: 2.5rem 0; }
+        .prose img { border-radius: 0.75rem; max-width: 100%; margin: 2rem 0; border: 1px solid #1e293b; }
+        .prose table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.95rem; }
+        .prose th { background: #0f172a; color: #e2e8f0; padding: 0.75rem 1rem; text-align: left; border: 1px solid #1e293b; font-family: system-ui, sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        .prose td { padding: 0.75rem 1rem; border: 1px solid #1e293b; color: #94a3b8; }
+        .prose tr:nth-child(even) td { background: #0a0f1e; }
+
+        #progress-bar { position: fixed; top: 0; left: 0; height: 2px; background: #4f46e5; width: 0%; z-index: 100; transition: width 0.1s linear; }
+
+        .fade-in { animation: fadeIn 0.5s ease forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+        nav { background: #020817; border-bottom: 1px solid #1e293b; }
+
+        .skeleton { background: linear-gradient(90deg, #1e293b 25%, #0f172a 50%, #1e293b 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 0.5rem; }
+        @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <div id="progress-bar"></div>
+
+    <nav class="sticky top-0 z-50 px-6 py-4">
+        <div class="max-w-3xl mx-auto flex items-center justify-between">
+            <a href="index.html" class="text-white font-bold text-lg hover:text-indigo-400 transition-colors" id="nav-name"></a>
+            <a id="back-link" href="index.html" class="flex items-center gap-2 text-slate-400 hover:text-white transition-colors text-sm">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                <span id="back-label">Back</span>
+            </a>
+        </div>
+    </nav>
+
+    <main class="px-6 py-16 max-w-3xl mx-auto">
+
+        <!-- Loading skeleton -->
+        <div id="loading">
+            <div class="skeleton h-4 w-24 mb-8"></div>
+            <div class="skeleton h-12 w-3/4 mb-4"></div>
+            <div class="skeleton h-6 w-full mb-2"></div>
+            <div class="skeleton h-6 w-5/6 mb-10"></div>
+            <div class="border-t border-slate-800 mb-10"></div>
+            <div class="space-y-3">
+                <div class="skeleton h-4 w-full"></div>
+                <div class="skeleton h-4 w-full"></div>
+                <div class="skeleton h-4 w-4/5"></div>
+            </div>
+        </div>
+
+        <!-- Not found -->
+        <div id="not-found" class="hidden text-center py-32">
+            <p class="text-6xl mb-6">404</p>
+            <p class="text-slate-500 text-lg mb-6">Page not found.</p>
+            <a href="index.html" class="text-indigo-400 hover:text-indigo-300 underline">← Go home</a>
+        </div>
+
+        <!-- Content -->
+        <article id="post-container" class="hidden fade-in">
+
+            <!-- Hero image (projects only) -->
+            <div id="hero-image" class="hidden mb-10 rounded-2xl overflow-hidden border border-slate-800 h-72">
+                <img id="hero-img-el" src="" alt="" class="w-full h-full object-cover">
+            </div>
+
+            <div id="post-meta" class="mb-10"></div>
+
+            <hr class="border-slate-800 mb-10">
+
+            <div id="post-content" class="prose"></div>
+
+            <div id="post-footer" class="mt-20 pt-8 border-t border-slate-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"></div>
+        </article>
+
+    </main>
+
+    <script>
+        marked.setOptions({
+            highlight: (code, lang) => {
+                if (lang && hljs.getLanguage(lang)) {
+                    return hljs.highlight(code, { language: lang }).value;
+                }
+                return hljs.highlightAuto(code).value;
+            },
+            breaks: true,
+            gfm: true,
+        });
+
+        async function init() {
+            document.getElementById('nav-name').textContent = profileData.profile.name.split(' ')[0];
+
+            const params  = new URLSearchParams(window.location.search);
+            const slug    = params.get('slug');
+            const type    = params.get('type') || 'post'; // 'post' or 'project'
+
+            const folder     = type === 'project' ? 'projects' : 'posts';
+            const backHref   = type === 'project' ? 'index.html#projects' : 'index.html#blog';
+            const backLabel  = type === 'project' ? 'All Projects' : 'All Posts';
+
+            document.getElementById('back-link').href  = backHref;
+            document.getElementById('back-label').textContent = backLabel;
+
+            if (!slug) { showNotFound(); return; }
+
+            // 1. Fetch metadata from the right index.json
+            let meta;
+            try {
+                const res = await fetch(`${folder}/index.json`);
+                if (!res.ok) throw new Error();
+                const all = await res.json();
+                meta = all.find(p => p.slug === slug);
+            } catch {
+                showNotFound(); return;
+            }
+
+            if (!meta) { showNotFound(); return; }
+
+            // 2. Fetch the markdown file
+            let markdown;
+            try {
+                const res = await fetch(`${folder}/${slug}.md`);
+                if (!res.ok) throw new Error();
+                markdown = await res.text();
+            } catch {
+                showNotFound(); return;
+            }
+
+            // 3. Page title
+            document.title = `${meta.title} — ${profileData.profile.name}`;
+
+            // 4. Hero image (projects only)
+            if (type === 'project' && meta.image) {
+                document.getElementById('hero-image').classList.remove('hidden');
+                document.getElementById('hero-img-el').src = meta.image;
+                document.getElementById('hero-img-el').alt = meta.title;
+            }
+
+            // 5. Meta block — adapts for project vs post
+            const tagsHtml = (meta.tags || []).map(t => `
+                <span class="text-[10px] font-mono text-indigo-400 uppercase tracking-widest bg-indigo-500/10 border border-indigo-500/20 px-3 py-1 rounded-full">${t}</span>
+            `).join('');
+
+            const techHtml = type === 'project' && meta.tech?.length ? `
+                <div class="flex flex-wrap gap-2 mt-4">
+                    ${meta.tech.map(t => `<span class="text-xs font-mono text-slate-400 bg-slate-800 px-3 py-1 rounded-lg border border-slate-700">${t}</span>`).join('')}
+                </div>
+            ` : '';
+
+            const linksHtml = type === 'project' ? `
+                <div class="flex items-center gap-4 mt-6">
+                    ${meta.github ? `<a href="${meta.github}" target="_blank" class="flex items-center gap-2 text-slate-300 hover:text-white transition-colors text-sm"><i data-lucide="github" class="w-4 h-4"></i> Source</a>` : ''}
+                    ${meta.demo  ? `<a href="${meta.demo}"   target="_blank" class="flex items-center gap-2 text-slate-300 hover:text-white transition-colors text-sm"><i data-lucide="external-link" class="w-4 h-4"></i> Live demo</a>` : ''}
+                </div>
+            ` : '';
+
+            document.getElementById('post-meta').innerHTML = `
+                <div class="flex flex-wrap gap-2 mb-5">${tagsHtml}</div>
+                <h1 class="text-4xl md:text-5xl font-bold text-white mb-5 leading-tight" style="font-family: system-ui, sans-serif">${meta.title}</h1>
+                <p class="text-slate-400 text-lg mb-4 leading-relaxed">${meta.description || meta.summary || ''}</p>
+                <div class="flex items-center gap-3 text-slate-500 text-sm font-mono">
+                    <i data-lucide="calendar" class="w-4 h-4"></i>
+                    <span>${meta.date || ''}</span>
+                </div>
+                ${techHtml}
+                ${linksHtml}
+            `;
+
+            // 6. Render markdown
+            document.getElementById('post-content').innerHTML = marked.parse(markdown);
+
+            // 7. Footer
+            document.getElementById('post-footer').innerHTML = `
+                <a href="${backHref}" class="flex items-center gap-2 text-slate-400 hover:text-white transition-colors text-sm">
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i> ${backLabel}
+                </a>
+                <button onclick="copyLink()" id="share-btn" class="flex items-center gap-2 text-slate-400 hover:text-white transition-colors text-sm">
+                    <i data-lucide="link" class="w-4 h-4"></i> Copy link
+                </button>
+            `;
+
+            document.getElementById('loading').classList.add('hidden');
+            document.getElementById('post-container').classList.remove('hidden');
+
+            lucide.createIcons();
+            hljs.highlightAll();
+        }
+
+        function showNotFound() {
+            document.getElementById('loading').classList.add('hidden');
+            document.getElementById('not-found').classList.remove('hidden');
+            lucide.createIcons();
+        }
+
+        window.addEventListener('scroll', () => {
+            const doc = document.documentElement;
+            const scrolled = doc.scrollTop / (doc.scrollHeight - doc.clientHeight);
+            document.getElementById('progress-bar').style.width = (scrolled * 100) + '%';
+        });
+
+        function copyLink() {
+            navigator.clipboard.writeText(window.location.href);
+            const btn = document.getElementById('share-btn');
+            btn.innerHTML = `<i data-lucide="check" class="w-4 h-4"></i> Copied!`;
+            lucide.createIcons();
+            setTimeout(() => {
+                btn.innerHTML = `<i data-lucide="link" class="w-4 h-4"></i> Copy link`;
+                lucide.createIcons();
+            }, 2000);
+        }
+
+        lucide.createIcons();
+        init();
+    </script>
+</body>
+</html>
