@@ -7,7 +7,7 @@ const links = {
     mitbc26:  "./post.html?slug=mitbc26"
 };
 
-const a = (href, text) => `<a href="${href}" target="_blank" class="text-indigo-400 hover:text-indigo-300 underline underline-offset-2 transition-colors">${text}</a>`;
+const a = (href, text) => `<a href="${href}" target="_blank" class="text-white font-medium underline underline-offset-4 decoration-white/50 hover:decoration-white hover:text-gray-100 transition-all duration-300 tracking-wide">${text}</a>`;
 
 const profileData = {
     profile: {
@@ -19,7 +19,7 @@ const profileData = {
         github: "https://github.com/Coderz75",
         linkedin: "https://www.linkedin.com/in/nuaym-syed",
         bio: "First-year student at the University of Washington. Passionate about robotics, low-level programming, and mechanical engineering. Currently exploring the intersection of AI and physics-based simulations.",
-        aboutExtended: `Hi my name is Nuaym! Currently aspiring to be either a Computer Scientist or an Electrical Engineer, I love combining my interests in programming, mathematics and science. I am a volunteer programmer at ${a(links.MM,"Mustang Math")}, ${a(links.mitbc26,"MIT Battlecode 2026 Finalist")}, and overall am a programming and science enthusiast! `
+        aboutExtended: `Hi my name is Nuaym! Currently aspiring to be either a Computer Scientist or an Electrical Engineer, I love combining my interests in programming, mathematics and science. I am a volunteer programmer at ${a(links.MM,"Mustang Math")}, ${a(links.mitbc26,"MIT Battlecode 2026 Finalist")},${a(links.mitbc26,"Cambridge Battlecode 2026 Second Place")}, and overall am a programming and science enthusiast!`
     },
     skills: [
         {

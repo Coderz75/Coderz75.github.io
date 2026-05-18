@@ -75,7 +75,7 @@ function renderAbout() {
                 </h2>
                 <div class="text-slate-400 space-y-4 leading-relaxed">
                     <p>${aboutExtended}</p>
-                    <p>Currently studying <span class="text-white font-medium">Math 13X (Honors Accelerated Calc)</span>, <span class="text-white font-medium">Phys 14X (Honors Physics)</span> and <span class="text-white font-medium">CSE 123 (Java)</span> at UW.</p>
+                    <p>Currently studying <span class="text-white font-medium">Calculus, Differential Equation, Linear Algebra, and Real Analysis</span>, <span class="text-white font-medium">Optics and Quantum Physics</span>, <span class="text-white font-medium">Architecture</span>, and <span class="text-white font-medium">Competitive Programming</span> .</p>
                 </div>
             </div>
             <div class="relative group">

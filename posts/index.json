@@ -1,5 +1,12 @@
 [
-  {
+    {
+        "slug": "cambc26",
+        "title": "Cambridge Battlecode 2026",
+        "date": "May 2026",
+        "summary": "Second Place at Cambridge Battlecode",
+        "tags": ["Python","AI"]
+    },
+    {
     "slug": "mitbc26",
     "title": "MIT Battlecode 2026",
     "date": "January 2026",
