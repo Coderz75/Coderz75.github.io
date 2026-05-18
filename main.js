@@ -26,7 +26,7 @@ const setHtml = (id, html) => {
 
 function renderNavbar() {
     const navLogoContainer = document.getElementById('nav-logo');
-    const firstName = profileData.profile.name.split(' ')[0];
+    const firstName = profileData.profile.name;
     navLogoContainer.innerHTML = `
         <div class="flex items-center gap-2">
             <img src="assets/pfp_line_small.png" alt="Logo" class="w-8 h-8 object-cover rounded-full">
