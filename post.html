@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loading...</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@1.17.0/dist/umd/lucide.min.js" integrity="sha384-bdZtphetAEBgkGZvhZXOFDWc55tHGLqaSo1f4qZtgvEiolEBqlJ9u6FTk+CoLfj0" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
@@ -120,13 +121,24 @@
             breaks: true,
             gfm: true,
         });
+        window.addEventListener('hashchange', () => {
+            window.location.reload();
+        });
 
         async function init() {
             document.getElementById('nav-name').textContent = profileData.profile.name.split(' ')[0];
 
-            const params  = new URLSearchParams(window.location.search);
-            const slug    = params.get('slug');
-            const type    = params.get('type') || 'post'; // 'post' or 'project'
+            const hash = window.location.hash.substring(1); // removes the '#'
+            if (!hash) { showNotFound(); return; }
+
+            let type = 'post';
+            let slug = hash;
+
+            // Check if it's a project based on the prefix we set in main.js
+            if (hash.startsWith('project-')) {
+                type = 'project';
+                slug = hash.replace('project-', '');
+            }
 
             const folder     = type === 'project' ? 'projects' : 'posts';
             const backHref   = type === 'project' ? 'index.html#projects' : 'index.html#blog';
@@ -140,7 +152,7 @@
             // 1. Fetch metadata from the right index.json
             let meta;
             try {
-                const res = await fetch(`${folder}/index.json`);
+                const res = await fetch(type === 'project' ? `${folder}/index_proj.json` : `${folder}/index.json`);
                 if (!res.ok) throw new Error();
                 const all = await res.json();
                 meta = all.find(p => p.slug === slug);

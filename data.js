@@ -4,7 +4,7 @@ const links = {
     github:   "https://github.com/Coderz75",
     linkedin: "https://www.linkedin.com/in/nuaym-syed",
     MM:       "https://www.mustangmath.com/",
-    mitbc26:  "./post.html?slug=mitbc26"
+    mitbc26:  "./post.html#slug=mitbc26"
 };
 
 const a = (href, text) => `<a href="${href}" target="_blank" class="text-white font-medium underline underline-offset-4 decoration-white/50 hover:decoration-white hover:text-gray-100 transition-all duration-300 tracking-wide">${text}</a>`;
