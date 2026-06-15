@@ -50,7 +50,7 @@ const profileData = {
             role: "Tyee Science Club Coach",
             organization: "Tyee Middle School",
             location: "Bellevue, WA",
-            date: "Sep 2024 - Present",
+            date: "Sep 2024 - April 2026",
             bullets: [
                 "Worked with a team to create high school to college level lectures on a variety of disciplines: Earth and Space, Biology, Physics, Chemistry, Mathematics, Energy",
                 "Graded homework, trained National Science Bowl teams, and had a lot of fun!"
