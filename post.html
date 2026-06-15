@@ -9,7 +9,6 @@
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-    <script src="data.js"></script>
 
     <style>
         body { background-color: #020817; color: #e2e8f0; font-family: 'Georgia', serif; }
@@ -58,7 +57,7 @@
         <div class="max-w-3xl mx-auto flex items-center justify-between">
             <div class="flex items-center gap-2">
                 <img src="assets/pfp_line_small.png" alt="Logo" class="w-8 h-8 object-cover rounded-full">
-                <a href="index.html" class="text-white font-bold text-lg hover:text-indigo-400 transition-colors" id="nav-name"></a>
+                <a href="index.html" class="text-white font-bold text-lg hover:text-indigo-400 transition-colors">Nuaym</a>
             </div>
             <a id="back-link" href="index.html" class="flex items-center gap-2 text-slate-400 hover:text-white transition-colors text-sm">
                 <i data-lucide="arrow-left" class="w-4 h-4"></i>
@@ -110,6 +109,8 @@
     </main>
 
     <script>
+        const SITE_AUTHOR = 'Nuaym Syed';
+
         marked.setOptions({
             highlight: (code, lang) => {
                 if (lang && hljs.getLanguage(lang)) {
@@ -120,35 +121,33 @@
             breaks: true,
             gfm: true,
         });
+
         window.addEventListener('hashchange', () => {
             window.location.reload();
         });
 
         async function init() {
-            document.getElementById('nav-name').textContent = profileData.profile.name.split(' ')[0];
-
-            const hash = window.location.hash.substring(1); // removes the '#'
+            const hash = window.location.hash.substring(1);
             if (!hash) { await showListing(); return; }
 
             let type = 'post';
             let slug = hash;
 
-            // Check if it's a project based on the prefix we set in main.js
             if (hash.startsWith('project-')) {
                 type = 'project';
                 slug = hash.replace('project-', '');
             }
 
-            const folder     = type === 'project' ? 'projects' : 'posts';
-            const backHref   = type === 'project' ? 'index.html#projects' : 'index.html#blog';
-            const backLabel  = type === 'project' ? 'All Projects' : 'All Posts';
+            const folder    = type === 'project' ? 'projects' : 'posts';
+            const backHref  = type === 'project' ? 'index.html#projects' : 'index.html#blog';
+            const backLabel = type === 'project' ? 'All Projects' : 'All Posts';
 
-            document.getElementById('back-link').href  = backHref;
+            document.getElementById('back-link').href = backHref;
             document.getElementById('back-label').textContent = backLabel;
 
             if (!slug) { showNotFound(); return; }
 
-            // 1. Fetch metadata from the right index.json
+            // 1. Fetch metadata
             let meta;
             try {
                 const res = await fetch(type === 'project' ? `${folder}/index_proj.json` : `${folder}/index.json`);
@@ -161,7 +160,7 @@
 
             if (!meta) { showNotFound(); return; }
 
-            // 2. Fetch the markdown file
+            // 2. Fetch markdown
             let markdown;
             try {
                 const res = await fetch(`${folder}/${slug}.md`);
@@ -172,7 +171,7 @@
             }
 
             // 3. Page title
-            document.title = `${meta.title} — ${profileData.profile.name}`;
+            document.title = `${meta.title} — ${SITE_AUTHOR}`;
 
             // 4. Hero image (projects only)
             if (type === 'project' && meta.image) {
@@ -181,7 +180,7 @@
                 document.getElementById('hero-img-el').alt = meta.title;
             }
 
-            // 5. Meta block — adapts for project vs post
+            // 5. Meta block
             const tagsHtml = (meta.tags || []).map(t => `
                 <span class="text-[10px] font-mono text-indigo-400 uppercase tracking-widest bg-indigo-500/10 border border-indigo-500/20 px-3 py-1 rounded-full">${t}</span>
             `).join('');
@@ -192,12 +191,11 @@
                 </div>
             ` : '';
 
-            // Handle demo link correctly inside the writeup
             const demoUrl = meta.demo || meta.customLink;
             const linksHtml = type === 'project' ? `
                 <div class="flex items-center gap-4 mt-6">
-                    ${meta.github ? `<a href="${meta.github}" target="_blank" class="flex items-center gap-2 text-slate-300 hover:text-white transition-colors text-sm px-4 py-2 bg-slate-900 border border-slate-700 rounded-lg hover:bg-slate-800"><i data-lucide="github" class="w-4 h-4"></i> Source Code</a>` : ''}
-                    ${demoUrl  ? `<a href="${demoUrl}"   target="_blank" class="flex items-center gap-2 text-indigo-400 hover:text-indigo-300 transition-colors text-sm px-4 py-2 bg-indigo-500/10 border border-indigo-500/20 rounded-lg hover:bg-indigo-500/20"><i data-lucide="external-link" class="w-4 h-4"></i> Live Demo</a>` : ''}
+                    ${meta.github ? `<a href="${meta.github}" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-slate-300 hover:text-white transition-colors text-sm px-4 py-2 bg-slate-900 border border-slate-700 rounded-lg hover:bg-slate-800"><i data-lucide="github" class="w-4 h-4"></i> Source Code</a>` : ''}
+                    ${demoUrl    ? `<a href="${demoUrl}"    target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-indigo-400 hover:text-indigo-300 transition-colors text-sm px-4 py-2 bg-indigo-500/10 border border-indigo-500/20 rounded-lg hover:bg-indigo-500/20"><i data-lucide="external-link" class="w-4 h-4"></i> Live Demo</a>` : ''}
                 </div>
             ` : '';
 
@@ -234,11 +232,10 @@
         }
 
         async function showListing() {
-            document.title = `Writing & Projects — ${profileData.profile.name}`;
+            document.title = `Writing & Projects — ${SITE_AUTHOR}`;
             document.getElementById('back-link').href = 'index.html';
             document.getElementById('back-label').textContent = 'Home';
 
-            // Fetch posts and projects in parallel
             let posts = [], projects = [];
             try {
                 const res = await fetch('posts/index.json');
@@ -265,10 +262,8 @@
             `).join('');
 
             const projCards = projects.map(p => {
-                // Exact same link logic as main.js
-                const readMoreLink = p.customLink ? p.customLink : `post.html#project-${p.slug}`;
+                const readMoreLink   = p.customLink ? p.customLink : `post.html#project-${p.slug}`;
                 const readMoreTarget = p.customLink && p.customLink.startsWith('http') ? 'target="_blank" rel="noopener noreferrer"' : '';
-
                 return `
                 <a href="${readMoreLink}" ${readMoreTarget} class="group flex flex-col bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden hover:border-indigo-500/50 hover:shadow-xl hover:shadow-indigo-500/10 transition-all duration-300 p-6 gap-3">
                     <div class="flex flex-wrap gap-1.5">${[...(p.tags || []), ...(p.tech || [])].slice(0, 4).map(tagBadge).join('')}</div>
