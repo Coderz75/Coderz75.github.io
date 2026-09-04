@@ -1,4 +1,11 @@
 [
+   {
+      "slug": "fcl26",
+      "title": "Florent Code League2026",
+      "date": "August 2026",
+      "summary": "My thoughts on the event",
+      "tags": ["Python","AI"]
+    },
     {
         "slug": "cambc26",
         "title": "Cambridge Battlecode 2026",
@@ -7,10 +14,10 @@
         "tags": ["Python","AI"]
     },
     {
-    "slug": "mitbc26",
-    "title": "MIT Battlecode 2026",
-    "date": "January 2026",
-    "summary": "First year competing at MIT BattleCode!",
-    "tags": ["Java","AI"]
-  }
+      "slug": "mitbc26",
+      "title": "MIT Battlecode 2026",
+      "date": "January 2026",
+      "summary": "First year competing at MIT BattleCode!",
+      "tags": ["Java","AI"]
+    }
 ]
