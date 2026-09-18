@@ -90,6 +90,10 @@ class Simulation{
     init_events(){
         this.isPointerDown = false;
         this.pointerOrigin = {x:0, y:0};
+        this.zoom = 1; // ADDED: 1 = default, >1 zoomed in, <1 zoomed out
+        this.pointers = new Map(); // ADDED: active pointers (fingers), for pinch
+        this.pinchLast = {x: 0, y: 0, distance: 0}; // ADDED: previous pinch midpoint/distance
+        this.svg.style.touchAction = "none"; // ADDED: stop the browser from handling pinch/scroll itself
         let rec = this.svg.getBoundingClientRect();
         this.viewBox = {
             x: -rec.width / 2,
@@ -99,7 +103,7 @@ class Simulation{
             x: -rec.width / 2,
             y: -rec.height / 2,
         };
-        this.svg.setAttribute("viewBox", `${this.newViewBox.x} ${this.newViewBox.y} ${rec.width} ${rec.height}`);
+        this.svg.setAttribute("viewBox", `${this.newViewBox.x} ${this.newViewBox.y} ${rec.width / this.zoom} ${rec.height / this.zoom}`);
 
 
         this.svg.addEventListener("pointerdown",(event)=>{
@@ -107,27 +111,106 @@ class Simulation{
             var pointerPosition = this.getPointFromEvent(event);
             this.pointerOrigin.x = pointerPosition.x;
             this.pointerOrigin.y = pointerPosition.y;
+            this.pointers.set(event.pointerId, {x: event.clientX, y: event.clientY}); // ADDED
+            if(this.pointers.size >= 2){ // ADDED: second finger down -> start pinch
+                this.viewBox.x = this.newViewBox.x;
+                this.viewBox.y = this.newViewBox.y;
+                this.startPinch();
+            }
         });
         this.svg.addEventListener("pointerup",(event)=>{
             this.isPointerDown = false;
             this.svg.releasePointerCapture(event.pointerId); // Releases pointer focus
             this.viewBox.x = this.newViewBox.x;
             this.viewBox.y = this.newViewBox.y;
+            this.pointers.delete(event.pointerId); // ADDED
+            if(this.pointers.size === 1){ // ADDED: one finger left -> resume single-finger pan without a jump
+                const [p] = [...this.pointers.values()];
+                this.isPointerDown = true;
+                this.pointerOrigin.x = p.x;
+                this.pointerOrigin.y = p.y;
+            } else if(this.pointers.size >= 2){
+                this.startPinch();
+            }
+        });
+        // ADDED: if the browser cancels a touch, forget that finger so pinch state can't get stuck
+        this.svg.addEventListener("pointercancel",(event)=>{
+            this.pointers.delete(event.pointerId);
+            if(this.pointers.size === 0) this.isPointerDown = false;
+            this.viewBox.x = this.newViewBox.x;
+            this.viewBox.y = this.newViewBox.y;
         });
         this.svg.addEventListener("pointermove",(event) =>{
+            if(this.pointers.has(event.pointerId)){ // ADDED: keep finger positions current
+                this.pointers.set(event.pointerId, {x: event.clientX, y: event.clientY});
+            }
+            if(this.pointers.size >= 2){ // ADDED: two fingers -> pinch zoom + two-finger pan
+                event.preventDefault();
+                const [a, b] = [...this.pointers.values()];
+                const distance = Math.hypot(a.x - b.x, a.y - b.y);
+                const midX = (a.x + b.x) / 2;
+                const midY = (a.y + b.y) / 2;
+                let rec = this.svg.getBoundingClientRect();
+                // Pan by how far the midpoint moved, then zoom around the midpoint
+                this.newViewBox.x -= (midX - this.pinchLast.x) / this.zoom;
+                this.newViewBox.y -= (midY - this.pinchLast.y) / this.zoom;
+                const factor = this.pinchLast.distance > 0 ? distance / this.pinchLast.distance : 1;
+                this.zoomAt(midX - rec.left, midY - rec.top, factor);
+                this.pinchLast = {x: midX, y: midY, distance: distance};
+                return;
+            }
             if(!this.isPointerDown) return;
             event.preventDefault();
             var pointerPosition = this.getPointFromEvent(event);
             this.svg.setPointerCapture(event.pointerId); // Captures pointer focus
-            this.newViewBox.x = this.viewBox.x + (this.pointerOrigin.x - pointerPosition.x);
-            this.newViewBox.y = this.viewBox.y + (this.pointerOrigin.y - pointerPosition.y);
+            this.newViewBox.x = this.viewBox.x + (this.pointerOrigin.x - pointerPosition.x) / this.zoom; // CHANGED: divide by zoom
+            this.newViewBox.y = this.viewBox.y + (this.pointerOrigin.y - pointerPosition.y) / this.zoom; // CHANGED: divide by zoom
             let rec = this.svg.getBoundingClientRect();
-            this.svg.setAttribute("viewBox", `${this.newViewBox.x} ${this.newViewBox.y} ${rec.width} ${rec.height}`);
+            this.svg.setAttribute("viewBox", `${this.newViewBox.x} ${this.newViewBox.y} ${rec.width / this.zoom} ${rec.height / this.zoom}`);
+        },{ passive: false });
+        // ADDED: wheel zoom, anchored on the cursor
+        this.svg.addEventListener("wheel",(event) =>{
+            event.preventDefault(); // Stop the page from scrolling
+            let rec = this.svg.getBoundingClientRect();
+            this.zoomAt(event.clientX - rec.left, event.clientY - rec.top, Math.exp(-event.deltaY * 0.001));
+            if(this.isPointerDown){
+                this.pointerOrigin.x = event.clientX; // Re-anchor an in-progress drag
+                this.pointerOrigin.y = event.clientY;
+            }
         },{ passive: false });
         window.addEventListener('resize', (event) => {
             let rec = this.svg.getBoundingClientRect();
-            this.svg.setAttribute("viewBox", `${this.newViewBox.x} ${this.newViewBox.y} ${rec.width} ${rec.height}`);
+            this.svg.setAttribute("viewBox", `${this.newViewBox.x} ${this.newViewBox.y} ${rec.width / this.zoom} ${rec.height / this.zoom}`);
         });
+    }
+
+    // ADDED: zoom by `factor`, keeping the world point under (screenX, screenY) fixed on screen
+    zoomAt(screenX, screenY, factor){
+        let rec = this.svg.getBoundingClientRect();
+        const newZoom = Math.min(8, Math.max(0.25, this.zoom * factor));
+
+        // World point under that screen position before zooming
+        const worldX = this.newViewBox.x + screenX / this.zoom;
+        const worldY = this.newViewBox.y + screenY / this.zoom;
+
+        this.zoom = newZoom;
+
+        // Shift the view so that same world point stays under that screen position
+        this.newViewBox.x = worldX - screenX / this.zoom;
+        this.newViewBox.y = worldY - screenY / this.zoom;
+        this.viewBox.x = this.newViewBox.x;
+        this.viewBox.y = this.newViewBox.y;
+        this.svg.setAttribute("viewBox", `${this.newViewBox.x} ${this.newViewBox.y} ${rec.width / this.zoom} ${rec.height / this.zoom}`);
+    }
+
+    // ADDED: record the current midpoint/distance of the first two fingers as the pinch baseline
+    startPinch(){
+        const [a, b] = [...this.pointers.values()];
+        this.pinchLast = {
+            x: (a.x + b.x) / 2,
+            y: (a.y + b.y) / 2,
+            distance: Math.hypot(a.x - b.x, a.y - b.y)
+        };
     }
 
     getPointFromEvent(event) {
