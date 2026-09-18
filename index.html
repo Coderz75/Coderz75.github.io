@@ -20,7 +20,17 @@
     <body>
         <div id = "simulation">
             <svg id="sim-svg" preserveAspectRatio="none">
-                <rect x="0" y="0" width="20" height="20" />
+                <radialGradient id="sunGlow" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+                    <!-- Solid bright yellow center -->
+                    <stop offset="0%" stop-color="#FFFF00" stop-opacity="1" />
+                    <stop offset="25%" stop-color="#FFEA00" stop-opacity="0.9" />
+                    <!-- Transition to warm golden-orange -->
+                    <stop offset="55%" stop-color="#FFA500" stop-opacity="0.5" />
+                    <stop offset="80%" stop-color="#FF8C00" stop-opacity="0.15" />
+                    <!-- Complete fade out at the boundary -->
+                    <stop offset="100%" stop-color="#FF8C00" stop-opacity="0" />
+                </radialGradient>
+                <circle cx="150" cy="150" r="120" fill="url(#sunGlow)" />
             </svg>
         </div>
         <div id = "index">
