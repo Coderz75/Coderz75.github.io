@@ -9,14 +9,16 @@ class Simulation{
     init_events(){
         this.isPointerDown = false;
         this.pointerOrigin = {x:0, y:0};
+        let rec = this.svg.getBoundingClientRect();
         this.viewBox = {
-            x: 0,
-            y: 0,
+            x: -rec.width / 2,
+            y: -rec.height / 2,
         };
         this.newViewBox = {
-            x: 0,
-            y: 0
+            x: -rec.width / 2,
+            y: -rec.height / 2,
         };
+        this.svg.setAttribute("viewBox", `${this.newViewBox.x} ${this.newViewBox.y} ${rec.width} ${rec.height}`);
 
 
         this.svg.addEventListener("pointerdown",(event)=>{
