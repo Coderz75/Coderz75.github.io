@@ -35,16 +35,18 @@ class CelestialObject{
         circle.setAttribute("cy", this.position.y);       // Center Y position
         circle.setAttribute("r", this.radius);       // Radius
         circle.setAttribute("fill", this.fill);   // Fill color/gradient
-        circle.addEventListener("click", () => {
-            const isOpening = sim.cameraTarget !== this; // Determine if we are opening or closing
-            const targetEl = document.getElementById(this.call);
+        if (this.call){
+            circle.addEventListener("click", () => {
+                const isOpening = sim.cameraTarget !== this; // Determine if we are opening or closing
+                const targetEl = document.getElementById(this.call);
 
-            if (isOpening) {
-                sim.animateToObject(this, 4, 1500);
-            }else{
-                sim.cameraTarget = null;
-            }
-        });
+                if (isOpening) {
+                    sim.animateToObject(this, 4, 1500);
+                }else{
+                    sim.cameraTarget = null;
+                }
+            });
+        }
         this.svg.appendChild(circle);
 
         const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
@@ -113,7 +115,7 @@ class Simulation{
                 "Sun", 
                 "url(#sunGlow)", 
                 80, 
-                "sun",
+                null,
                 null,
                 ids++,
                 0,
@@ -148,23 +150,47 @@ class Simulation{
         ];
 
     }
-    animateToObject(obj, targetZoom = 4, duration = 1000) {
+    animateToObject(obj, targetZoom = 4, duration = 1500) {
         this.cameraTarget = obj;
         this.cameraAnimating = true;
 
+        // Capture starting state
         const startZoom = this.zoom;
+        const startX = this.newViewBox.x;
+        const startY = this.newViewBox.y;
         const startTime = performance.now();
 
+        // Smooth cubic easing (ease-in-out)
         const ease = t => t * t * (3 - 2 * t);
 
         const animate = (now) => {
+            // If the user starts dragging during animation, cancel the camera transit
+            if (!this.cameraAnimating) return;
+
+            const rec = this.svg.getBoundingClientRect();
             const t = Math.min((now - startTime) / duration, 1);
             const e = ease(t);
 
+            // 1. Interpolate Zoom
             this.zoom = startZoom + (targetZoom - startZoom) * e;
 
-            // Follow the planet at the current zoom
-            this.updateCamera();
+            // 2. Calculate ideal centered camera target position at current frame
+            const targetX = obj.position.x - (rec.width / this.zoom) / 2;
+            const targetY = obj.position.y - (rec.height / this.zoom) / 2;
+
+            // 3. Smoothly interpolate position from start to target
+            this.newViewBox.x = startX + (targetX - startX) * e;
+            this.newViewBox.y = startY + (targetY - startY) * e;
+
+            this.viewBox.x = this.newViewBox.x;
+            this.viewBox.y = this.newViewBox.y;
+
+            // 4. Update SVG ViewBox attributes
+            this.svg.setAttribute(
+                "viewBox",
+                `${this.newViewBox.x} ${this.newViewBox.y} ` +
+                `${rec.width / this.zoom} ${rec.height / this.zoom}`
+            );
 
             if (t < 1) {
                 requestAnimationFrame(animate);
