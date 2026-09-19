@@ -1,0 +1,324 @@
+/* 📱 Tablets and Smaller Laptops (768px and up) */
+@media (min-width: 768px) {
+  
+}
+
+/* 💻 Desktop Screens (1024px and up) */
+@media (min-width: 1024px) {
+    
+}
+html,body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden
+}
+body {
+  font-family: 'Courier New', Courier, 'Fira Code', 'Consolas', monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  letter-spacing: 0.08em;
+}
+h1{
+    text-transform: uppercase; /* Gives a sharp, machine-like feel */
+    font-weight: normal;
+    margin-bottom: 0.2rem; /* Reduces gap below the text */
+}
+
+#simulation{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 60vw;
+    height: 100vh;
+    background-color: rgb(0, 0, 0);
+}
+#sim-svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    touch-action: none;
+}
+#sim-svg:hover{
+    cursor: grab;
+}
+#index{
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 40vw;
+    height: 100vh;
+    background-color: rgb(27, 27, 27);
+    padding: 20px;
+    color:white;
+    box-sizing: border-box;
+    overflow-y: auto;
+    overflow-x: wrap;
+}
+#intro {
+  margin-bottom: 1.5rem; /* Adds vertical spacing below text before dropdowns start */
+}
+
+/*AI SLOP*/
+/* ==========================================================================
+   TERMINAL DROPDOWN SYSTEM
+   ========================================================================== */
+
+.terminal-dropdown {
+  border-top: 1px dashed #333;
+  border-bottom: 1px dashed #333;
+  margin-top: -1px; /* Prevents double borders when stacked */
+}
+
+.terminal-dropdown summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  cursor: pointer;
+  list-style: none; /* Removes default browser arrow */
+  font-weight: bold;
+  text-transform: uppercase;
+  user-select: none;
+}
+
+/* Hide webkit default summary marker */
+.terminal-dropdown summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Arrow rotation on toggle */
+.terminal-dropdown summary .dropdown-arrow {
+  font-size: 10px;
+  transition: transform 0.2s ease;
+}
+
+.terminal-dropdown[open] summary .dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+/* Dropdown Content */
+.dropdown-content {
+  padding: 8px 0 16px 0;
+  color: #dbdbdb;
+}
+
+.dropdown-content p {
+  margin: 4px 0;
+}
+
+@supports (interpolate-size: allow-keywords) {
+    :root {
+        interpolate-size: allow-keywords; /* lets height animate to/from `auto` */
+    }
+    details::details-content {
+        height: 0;
+        overflow: clip; /* hide content that hasn't "grown into view" yet */
+        transition: height 0.3s ease-out, content-visibility 0.3s ease-out allow-discrete;
+    }
+    details[open]::details-content {
+        height: auto;
+    }
+}
+/* ==========================================================================
+   NESTED DROPDOWN & STYLED INDENT PROMPT
+   ========================================================================== */
+
+.terminal-dropdown summary .summary-left,
+.terminal-dropdown summary .summary-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.degree-dates {
+  color: #888;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  font-weight: normal;
+  text-transform: none;
+}
+
+/* Indentation & left vertical guide line */
+.terminal-dropdown.nested-dropdown {
+  border-top: none;
+  border-bottom: 1px dashed #282828;
+  margin-left: 8px;
+  padding-left: 12px;
+  border-left: 2px solid #333; 
+}
+
+.terminal-dropdown.nested-dropdown summary {
+  font-weight: normal;
+  padding: 8px 0;
+  color: #e0e0e0;
+}
+
+/* Automatically prepends the terminal prompt '>' as part of the styled indent */
+.terminal-dropdown.nested-dropdown summary .summary-left::before {
+  content: '>';
+  color: #888;
+  font-weight: bold;
+}
+
+.terminal-dropdown.nested-dropdown .dropdown-content {
+  padding-top: 4px;
+  padding-bottom: 8px;
+}
+
+.terminal-dropdown.nested-dropdown ul {
+  margin: 4px 0 0 0;
+  padding-left: 20px;
+}
+
+#index a {
+  color: #79c0ff;               /* Cool soft blue for readability on dark background */
+  text-decoration: none;
+  border-bottom: 1px dotted #79c0ff;
+  transition: color 0.2s ease, border-bottom-color 0.2s ease, background-color 0.2s ease;
+  padding: 0 2px;
+  border-radius: 2px;
+  word-break: break-all;        /* Prevents long links like raw GitHub URLs from breaking layout */
+}
+
+/* Hover & Focus States */
+#index a:hover,
+#index a:focus-visible {
+  color: #1b1b1b;              /* Matches your #index background */
+  background-color: #79c0ff;   /* High-contrast terminal highlight effect */
+  border-bottom-color: transparent;
+  outline: none;
+}
+
+/* ==========================================================================
+   BUTTON STYLING (Terminal Aesthetic)
+   ========================================================================== */
+
+#index button,
+.terminal-btn {
+  font-family: inherit;             /* Keeps your Courier New / monospace stack */
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #79c0ff;                   /* Matching soft blue accent */
+  background-color: transparent;
+  border: 1px dashed #79c0ff;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  user-select: none;
+}
+
+/* Hover & Focus States (Inverted Selection Effect) */
+#index button:hover,
+#index button:focus-visible,
+.terminal-btn:hover,
+.terminal-btn:focus-visible {
+  color: #1b1b1b;                  /* Dark background color */
+  background-color: #79c0ff;       /* Solid highlight fill */
+  border-style: solid;
+  outline: none;
+}
+
+/* Active / Pressed State */
+#index button:active,
+.terminal-btn:active {
+  transform: translateY(1px);      /* Subtle tactile press feedback */
+  opacity: 0.85;
+}
+
+/* Optional Disabled State */
+#index button:disabled,
+.terminal-btn:disabled {
+  color: #555;
+  border-color: #444;
+  cursor: not-allowed;
+  background-color: transparent;
+}
+
+#social-links {
+    position: absolute;
+    right: 24px;              /* clears the panel's scrollbar */
+    top: 20px;
+    z-index: 10;              /* stays above the info panel */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 10px;
+    max-width: calc(40vw - 48px);
+}
+
+a.terminal-btn {
+    text-decoration: none;
+    box-sizing: border-box;
+    background-color: #1b1b1b; /* matches the panel so scrolled text doesn't show through */
+}
+
+a.terminal-btn:hover,
+a.terminal-btn:focus-visible {
+    background-color: #79c0ff;
+    color: #1b1b1b;
+    border-style: solid;
+}
+
+/* Push the panel's content below the button bar */
+#index {
+    padding-top: 68px;
+}
+
+#sheet-toggle { display: none; }
+
+@media (max-width: 768px) {
+    #simulation {
+        width: 100vw;
+        height: 100vh;
+        height: 100dvh;
+    }
+
+    #index {
+        top: auto;
+        bottom: 0;
+        width: 100vw;
+        height: 70vh;
+        height: 70dvh;
+        padding-top: 20px;              /* the link bar isn't inside the panel here */
+        border-top: 1px dashed #333;
+        transform: translateY(100%);    /* parked below the screen */
+        transition: transform 0.3s ease-out;
+        z-index: 20;
+    }
+    #index.open { transform: translateY(0); }
+
+    #sheet-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        left: 50%;
+        bottom: 0;
+        transform: translateX(-50%);
+        width: 72px;
+        height: 32px;
+        padding: 0;
+        z-index: 30;
+        background: #1b1b1b;
+        color: #79c0ff;
+        border: 1px dashed #333;
+        border-bottom: none;
+        border-radius: 2px 2px 0 0;
+        font-family: inherit;
+        font-size: 12px;
+        cursor: pointer;
+        transition: bottom 0.3s ease-out;
+    }
+    #sheet-toggle .arrow { transition: transform 0.3s ease-out; }
+    #index.open + #sheet-toggle { bottom: 70vh; bottom: 70dvh; }
+    #index.open + #sheet-toggle .arrow { transform: rotate(180deg); }
+
+    /* link bar stays on the simulation, just a bit smaller so it fits on one row */
+    #social-links { right: 12px; top: 12px; gap: 8px; max-width: calc(100vw - 24px); }
+    #social-links .terminal-btn { font-size: 12px; padding: 5px 8px; }
+}
