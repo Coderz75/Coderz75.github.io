@@ -4,123 +4,289 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loading...</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@1.17.0/dist/umd/lucide.min.js" integrity="sha384-bdZtphetAEBgkGZvhZXOFDWc55tHGLqaSo1f4qZtgvEiolEBqlJ9u6FTk+CoLfj0" crossorigin="anonymous"></script>
+    <meta name="author" content="Nuaym Syed">
+    <link rel="icon" href="favicon.ico">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
 
     <style>
-        body { background-color: #020817; color: #e2e8f0; font-family: 'Georgia', serif; }
+        /* ==========================================================================
+           TOKENS (same palette as the portfolio index)
+           ========================================================================== */
+        :root {
+            --bg: #1b1b1b;
+            --bg-deep: #141414;
+            --fg: #dbdbdb;
+            --fg-strong: #ffffff;
+            --fg-soft: #b5b5b5;
+            --muted: #888888;
+            --line: #333333;
+            --accent: #79c0ff;
+        }
 
-        .prose { max-width: 72ch; }
-        .prose h1 { font-size: 2.5rem; font-weight: 800; color: #fff; margin: 2.5rem 0 1rem; font-family: system-ui, sans-serif; line-height: 1.15; }
-        .prose h2 { font-size: 1.6rem; font-weight: 700; color: #fff; margin: 2.5rem 0 0.75rem; font-family: system-ui, sans-serif; padding-bottom: 0.5rem; border-bottom: 1px solid #1e293b; }
-        .prose h3 { font-size: 1.2rem; font-weight: 600; color: #e2e8f0; margin: 2rem 0 0.5rem; font-family: system-ui, sans-serif; }
-        .prose p  { color: #94a3b8; line-height: 1.85; margin: 1.25rem 0; font-size: 1.05rem; }
-        .prose a  { color: #818cf8; text-decoration: underline; text-underline-offset: 3px; transition: color 0.15s; }
-        .prose a:hover { color: #a5b4fc; }
-        .prose ul, .prose ol { color: #94a3b8; padding-left: 1.5rem; margin: 1.25rem 0; line-height: 1.85; font-size: 1.05rem; }
-        .prose ul { list-style-type: disc; }
-        .prose ol { list-style-type: decimal; }
-        .prose li { margin: 0.4rem 0; }
-        .prose strong { color: #e2e8f0; font-weight: 600; }
-        .prose em { color: #cbd5e1; font-style: italic; }
-        .prose blockquote { border-left: 3px solid #4f46e5; padding: 0.75rem 1.25rem; margin: 1.5rem 0; background: #0f172a; border-radius: 0 0.5rem 0.5rem 0; }
-        .prose blockquote p { color: #94a3b8; margin: 0; font-style: italic; }
-        .prose code:not(pre code) { background: #1e293b; color: #a5b4fc; padding: 0.15em 0.4em; border-radius: 0.3rem; font-size: 0.9em; font-family: 'Fira Code', 'Consolas', monospace; }
-        .prose pre { background: #0f172a !important; border: 1px solid #1e293b; border-radius: 0.75rem; padding: 1.5rem; margin: 1.75rem 0; overflow-x: auto; }
-        .prose pre code { font-size: 0.88rem; font-family: 'Fira Code', 'Consolas', monospace; background: transparent !important; padding: 0; color: inherit; }
-        .prose hr { border: none; border-top: 1px solid #1e293b; margin: 2.5rem 0; }
-        .prose img { border-radius: 0.75rem; max-width: 100%; margin: 2rem 0; border: 1px solid #1e293b; }
-        .prose table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.95rem; }
-        .prose th { background: #0f172a; color: #e2e8f0; padding: 0.75rem 1rem; text-align: left; border: 1px solid #1e293b; font-family: system-ui, sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; }
-        .prose td { padding: 0.75rem 1rem; border: 1px solid #1e293b; color: #94a3b8; }
-        .prose tr:nth-child(even) td { background: #0a0f1e; }
+        *, *::before, *::after { box-sizing: border-box; }
 
-        #progress-bar { position: fixed; top: 0; left: 0; height: 2px; background: #4f46e5; width: 0%; z-index: 100; transition: width 0.1s linear; }
+        html { background: var(--bg); }
 
-        .fade-in { animation: fadeIn 0.5s ease forwards; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: var(--bg);
+            color: var(--fg);
+            font-family: 'Courier New', Courier, 'Fira Code', 'Consolas', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            letter-spacing: 0.08em;
+        }
 
-        nav { background: #020817; border-bottom: 1px solid #1e293b; }
+        .hidden { display: none !important; }
+        .muted { color: var(--muted); }
 
-        .skeleton { background: linear-gradient(90deg, #1e293b 25%, #0f172a 50%, #1e293b 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 0.5rem; }
-        @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+        .wrap { max-width: 760px; margin: 0 auto; padding-left: 20px; padding-right: 20px; }
+        main.wrap { padding-top: 40px; padding-bottom: 80px; }
+
+        /* ==========================================================================
+           TOP BAR + PROGRESS
+           ========================================================================== */
+        #progress-bar {
+            position: fixed; top: 0; left: 0; height: 2px; width: 0;
+            background: var(--accent); z-index: 100;
+        }
+
+        .topbar {
+            position: sticky; top: 0; z-index: 50;
+            background: var(--bg);
+            border-bottom: 1px dashed var(--line);
+        }
+        .topbar-inner {
+            display: flex; align-items: center; justify-content: space-between;
+            gap: 12px; padding-top: 14px; padding-bottom: 14px;
+        }
+        .brand {
+            color: var(--fg-strong); text-decoration: none; text-transform: uppercase;
+        }
+        .brand:hover, .brand:focus-visible { color: var(--accent); outline: none; }
+
+        /* ==========================================================================
+           TERMINAL BUTTON (same as the index)
+           ========================================================================== */
+        .terminal-btn {
+            font-family: inherit;
+            font-size: 13px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: var(--accent);
+            background-color: transparent;
+            border: 1px dashed var(--accent);
+            padding: 6px 12px;
+            cursor: pointer;
+            border-radius: 2px;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            user-select: none;
+        }
+        .terminal-btn:hover, .terminal-btn:focus-visible {
+            color: var(--bg);
+            background-color: var(--accent);
+            border-style: solid;
+            outline: none;
+        }
+        .terminal-btn:active { transform: translateY(1px); opacity: 0.85; }
+
+        /* ==========================================================================
+           HEADINGS / RULES
+           ========================================================================== */
+        h1 {
+            font-size: 1.75rem; line-height: 1.25; font-weight: normal;
+            text-transform: uppercase; color: var(--fg-strong);
+            margin: 0 0 0.4rem;
+        }
+        hr.dashed { border: none; border-top: 1px dashed var(--line); margin: 1rem 0; }
+        #intro { margin: 0 0 1.5rem; }
+
+        /* ==========================================================================
+           LISTING (posts and projects in one list)
+           ========================================================================== */
+        .entries { list-style: none; margin: 0; padding: 0; border-top: 1px dashed var(--line); }
+        .entries li { border-bottom: 1px dashed var(--line); }
+
+        .entry {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            column-gap: 16px;
+            row-gap: 2px;
+            padding: 12px 0 12px 12px;
+            border-left: 2px solid var(--line);
+            color: inherit;
+            text-decoration: none;
+        }
+        .entry-title { text-transform: uppercase; color: #e0e0e0; }
+        .entry-title::before { content: '>'; color: var(--muted); font-weight: bold; margin-right: 8px; }
+        .entry-date { color: var(--muted); font-size: 11px; letter-spacing: 0.05em; white-space: nowrap; align-self: center; }
+        .entry-desc {
+            grid-column: 1 / -1;
+            color: var(--fg-soft);
+            display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+            padding-left: 1.5em;
+        }
+        .entry-tags { grid-column: 1 / -1; color: var(--muted); font-size: 11px; letter-spacing: 0.05em; padding-left: 1.5em; }
+        .entry-tags:empty { display: none; }
+        .ext { color: var(--muted); }
+
+        .entry:hover, .entry:focus-visible { border-left-color: var(--accent); outline: none; }
+        .entry:hover .entry-title::before, .entry:focus-visible .entry-title::before { color: var(--accent); }
+        .entry:hover .t, .entry:focus-visible .t { background: var(--accent); color: var(--bg); }
+
+        /* ==========================================================================
+           POST HEADER
+           ========================================================================== */
+        #hero-image { margin-bottom: 2rem; border: 1px dashed var(--line); padding: 6px; }
+        #hero-image img { display: block; width: 100%; max-height: 288px; object-fit: cover; }
+
+        .meta-line { display: flex; flex-wrap: wrap; gap: 4px 16px; color: var(--muted); font-size: 11px; letter-spacing: 0.05em; margin-bottom: 0.75rem; }
+        #post-meta h1 { font-size: 1.6rem; }
+        .lede { color: var(--fg); margin: 0.75rem 0 0; }
+        .meta-tech { color: var(--muted); font-size: 11px; letter-spacing: 0.05em; margin: 1rem 0 0; }
+        .meta-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 1.25rem; }
+
+        /* ==========================================================================
+           MARKDOWN CONTENT
+           ========================================================================== */
+        .prose { color: var(--fg); line-height: 1.75; letter-spacing: 0.05em; overflow-wrap: break-word; }
+        .prose > :first-child { margin-top: 0; }
+        .prose h1, .prose h2, .prose h3, .prose h4 {
+            color: var(--fg-strong); font-weight: normal; line-height: 1.3; text-transform: uppercase;
+        }
+        .prose h1 { font-size: 1.5rem; margin: 2.5rem 0 1rem; }
+        .prose h2 { font-size: 1.15rem; margin: 2.5rem 0 0.75rem; padding-bottom: 0.5rem; border-bottom: 1px dashed var(--line); }
+        .prose h3 { font-size: 1rem; margin: 2rem 0 0.5rem; }
+        .prose h4 { font-size: 0.95rem; margin: 1.5rem 0 0.5rem; }
+        .prose h1::before { content: '# '; color: var(--muted); }
+        .prose h2::before { content: '## '; color: var(--muted); }
+        .prose h3::before { content: '### '; color: var(--muted); }
+        .prose h4::before { content: '#### '; color: var(--muted); }
+
+        .prose p { margin: 1.1rem 0; }
+        .prose strong { color: var(--fg-strong); font-weight: bold; }
+        .prose em { font-style: italic; }
+        .prose ul, .prose ol { margin: 1.1rem 0; padding-left: 1.5rem; }
+        .prose li { margin: 0.35rem 0; }
+        .prose li::marker { color: var(--muted); }
+
+        .prose a, .inline-link {
+            color: var(--accent); text-decoration: none;
+            border-bottom: 1px dotted var(--accent);
+            padding: 0 2px; border-radius: 2px;
+            transition: color 0.2s ease, background-color 0.2s ease, border-bottom-color 0.2s ease;
+        }
+        .prose a:hover, .prose a:focus-visible, .inline-link:hover, .inline-link:focus-visible {
+            color: var(--bg); background-color: var(--accent); border-bottom-color: transparent; outline: none;
+        }
+
+        .prose blockquote {
+            margin: 1.5rem 0; padding: 0.25rem 0 0.25rem 1rem;
+            border-left: 2px solid var(--line); color: var(--fg-soft);
+        }
+        .prose blockquote p { margin: 0.5rem 0; }
+
+        .prose code:not(pre code) {
+            background: #262626; border: 1px solid var(--line); border-radius: 2px;
+            color: #e0e0e0; padding: 0 0.35em; font-size: 0.92em;
+        }
+        .prose pre {
+            background: var(--bg-deep) !important;
+            border: 1px dashed var(--line); border-radius: 2px;
+            padding: 1rem 1.25rem; margin: 1.5rem 0; overflow-x: auto;
+            letter-spacing: 0.02em; line-height: 1.6;
+        }
+        .prose pre code { font-family: inherit; font-size: 13px; background: transparent !important; padding: 0; color: inherit; }
+
+        .prose hr { border: none; border-top: 1px dashed var(--line); margin: 2.5rem 0; }
+        .prose img { display: block; max-width: 100%; margin: 2rem 0; border: 1px solid var(--line); }
+        .prose table { display: block; max-width: 100%; overflow-x: auto; border-collapse: collapse; margin: 1.5rem 0; }
+        .prose th { color: var(--muted); text-align: left; text-transform: uppercase; font-size: 11px; font-weight: normal; padding: 8px 12px; border: 1px dashed var(--line); }
+        .prose td { padding: 8px 12px; border: 1px dashed var(--line); }
+
+        /* ==========================================================================
+           FOOTER / STATES
+           ========================================================================== */
+        .post-footer {
+            margin-top: 4rem; padding-top: 1.25rem;
+            border-top: 1px dashed var(--line);
+            display: flex; flex-wrap: wrap; gap: 12px;
+            align-items: center; justify-content: space-between;
+        }
+
+        .cursor { animation: blink 1s steps(1) infinite; }
+        @keyframes blink { 50% { opacity: 0; } }
+        @media (prefers-reduced-motion: reduce) {
+            .cursor { animation: none; }
+            .terminal-btn, .prose a { transition: none; }
+        }
+
+        @media (max-width: 600px) {
+            main.wrap { padding-top: 28px; }
+            h1 { font-size: 1.4rem; }
+            #post-meta h1 { font-size: 1.3rem; }
+        }
     </style>
 </head>
-<body class="min-h-screen">
+<body>
 
     <div id="progress-bar"></div>
 
-    <nav class="sticky top-0 z-50 px-6 py-4">
-        <div class="max-w-3xl mx-auto flex items-center justify-between">
-            <div class="flex items-center gap-2">
-                <img src="assets/pfp_line_small.png" alt="Logo" class="w-8 h-8 object-cover rounded-full">
-                <a href="index.html" class="text-white font-bold text-lg hover:text-indigo-400 transition-colors">Nuaym</a>
-            </div>
-            <a id="back-link" href="index.html" class="flex items-center gap-2 text-slate-400 hover:text-white transition-colors text-sm">
-                <i data-lucide="arrow-left" class="w-4 h-4"></i>
-                <span id="back-label">Back</span>
-            </a>
+    <header class="topbar">
+        <div class="wrap topbar-inner">
+            <a class="brand" href="index.html">Nuaym S. Syed</a>
+            <a id="back-link" class="terminal-btn" href="index.html"><span aria-hidden="true">←</span> <span id="back-label">Back</span></a>
         </div>
-    </nav>
+    </header>
 
-    <main class="px-6 py-16 max-w-3xl mx-auto">
+    <main class="wrap">
 
-        <!-- Loading skeleton -->
-        <div id="loading">
-            <div class="skeleton h-4 w-24 mb-8"></div>
-            <div class="skeleton h-12 w-3/4 mb-4"></div>
-            <div class="skeleton h-6 w-full mb-2"></div>
-            <div class="skeleton h-6 w-5/6 mb-10"></div>
-            <div class="border-t border-slate-800 mb-10"></div>
-            <div class="space-y-3">
-                <div class="skeleton h-4 w-full"></div>
-                <div class="skeleton h-4 w-full"></div>
-                <div class="skeleton h-4 w-4/5"></div>
-            </div>
-        </div>
+        <!-- Loading -->
+        <p id="loading" class="muted">Loading<span class="cursor">_</span></p>
 
         <!-- Not found -->
-        <div id="not-found" class="hidden text-center py-32">
-            <p class="text-6xl mb-6">404</p>
-            <p class="text-slate-500 text-lg mb-6">Page not found.</p>
-            <a href="index.html" class="text-indigo-400 hover:text-indigo-300 underline">← Go home</a>
+        <div id="not-found" class="hidden">
+            <h1>404</h1>
+            <hr class="dashed">
+            <p>That page doesn't exist. It may have been moved or renamed.</p>
+            <p><a class="inline-link" href="post.html">Back to the blog</a></p>
         </div>
 
         <!-- Content -->
-        <article id="post-container" class="hidden fade-in">
+        <article id="post-container" class="hidden">
 
             <!-- Hero image (projects only) -->
-            <div id="hero-image" class="hidden mb-10 rounded-2xl overflow-hidden border border-slate-800 h-72">
-                <img id="hero-img-el" src="" alt="" class="w-full h-full object-cover">
+            <div id="hero-image" class="hidden">
+                <img id="hero-img-el" src="" alt="">
             </div>
 
-            <div id="post-meta" class="mb-10"></div>
+            <div id="post-meta"></div>
 
-            <hr class="border-slate-800 mb-10">
+            <hr class="dashed">
 
             <div id="post-content" class="prose"></div>
 
-            <div id="post-footer" class="mt-20 pt-8 border-t border-slate-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"></div>
+            <div id="post-footer" class="post-footer"></div>
         </article>
 
     </main>
 
     <script>
         const SITE_AUTHOR = 'Nuaym Syed';
+        const BLOG_URL = 'post.html';
 
-        marked.setOptions({
-            highlight: (code, lang) => {
-                if (lang && hljs.getLanguage(lang)) {
-                    return hljs.highlight(code, { language: lang }).value;
-                }
-                return hljs.highlightAuto(code).value;
-            },
-            breaks: true,
-            gfm: true,
-        });
+        marked.setOptions({ breaks: true, gfm: true });
+
+        const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => (
+            { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
+        ));
 
         window.addEventListener('hashchange', () => {
             window.location.reload();
@@ -134,44 +300,39 @@
             return decodeURIComponent(window.location.hash.substring(1));
         }
 
+        function setBackLink(href, label) {
+            document.getElementById('back-link').href = href;
+            document.getElementById('back-label').textContent = label;
+        }
+
         async function init() {
             const id = getPageId();
             if (!id) { await showListing(); return; }
 
-            let type = 'post';
-            let slug = id;
-
-            if (id.startsWith('project-')) {
-                type = 'project';
-                slug = id.replace('project-', '');
-            }
+            const isProject = id.startsWith('project-');
+            const slug = isProject ? id.slice('project-'.length) : id;
 
             // Rewrite legacy #slug URLs to ?p=slug so "Copy link" always yields a
             // fragment-free, shareable URL.
             if (window.location.hash && !new URLSearchParams(window.location.search).get('p')) {
-                history.replaceState(null, '', `post.html?p=${encodeURIComponent(id)}`);
+                history.replaceState(null, '', `${BLOG_URL}?p=${encodeURIComponent(id)}`);
             }
 
-            const folder    = type === 'project' ? 'projects' : 'posts';
-            const backHref  = type === 'project' ? 'index.html#projects' : 'index.html#blog';
-            const backLabel = type === 'project' ? 'All Projects' : 'All Posts';
-
-            document.getElementById('back-link').href = backHref;
-            document.getElementById('back-label').textContent = backLabel;
+            const folder = isProject ? 'projects' : 'posts';
+            setBackLink(BLOG_URL, 'Blog');
 
             if (!slug) { showNotFound(); return; }
 
             // 1. Fetch metadata
             let meta;
             try {
-                const res = await fetch(type === 'project' ? `${folder}/index_proj.json` : `${folder}/index.json`);
+                const res = await fetch(isProject ? `${folder}/index_proj.json` : `${folder}/index.json`);
                 if (!res.ok) throw new Error();
                 const all = await res.json();
                 meta = all.find(p => p.slug === slug);
             } catch {
                 showNotFound(); return;
             }
-
             if (!meta) { showNotFound(); return; }
 
             // 2. Fetch markdown
@@ -188,39 +349,38 @@
             document.title = `${meta.title} — ${SITE_AUTHOR}`;
 
             // 4. Hero image (projects only)
-            if (type === 'project' && meta.image) {
+            if (isProject && meta.image) {
                 document.getElementById('hero-image').classList.remove('hidden');
                 document.getElementById('hero-img-el').src = meta.image;
                 document.getElementById('hero-img-el').alt = meta.title;
             }
 
             // 5. Meta block
-            const tagsHtml = (meta.tags || []).map(t => `
-                <span class="text-[10px] font-mono text-indigo-400 uppercase tracking-widest bg-indigo-500/10 border border-indigo-500/20 px-3 py-1 rounded-full">${t}</span>
-            `).join('');
+            const tagsHtml = (meta.tags || []).map(t => `<span>[${esc(t)}]</span>`).join('');
+            const metaLine = (meta.date || tagsHtml) ? `
+                <div class="meta-line">
+                    ${meta.date ? `<span>${esc(meta.date)}</span>` : ''}
+                    ${tagsHtml}
+                </div>` : '';
 
-            const techHtml = type === 'project' && meta.tech?.length ? `
-                <div class="flex flex-wrap gap-2 mt-4">
-                    ${meta.tech.map(t => `<span class="text-xs font-mono text-slate-400 bg-slate-800 px-3 py-1 rounded-lg border border-slate-700">${t}</span>`).join('')}
-                </div>
-            ` : '';
+            const techHtml = isProject && meta.tech?.length
+                ? `<p class="meta-tech">Notable Technologies: ${meta.tech.map(t => esc(t)).join(', ')}</p>`
+                : '';
 
             const demoUrl = meta.demo || meta.customLink;
-            const linksHtml = type === 'project' ? `
-                <div class="flex items-center gap-4 mt-6">
-                    ${meta.github ? `<a href="${meta.github}" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-slate-300 hover:text-white transition-colors text-sm px-4 py-2 bg-slate-900 border border-slate-700 rounded-lg hover:bg-slate-800"><i data-lucide="github" class="w-4 h-4"></i> Source Code</a>` : ''}
-                    ${demoUrl    ? `<a href="${demoUrl}"    target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-indigo-400 hover:text-indigo-300 transition-colors text-sm px-4 py-2 bg-indigo-500/10 border border-indigo-500/20 rounded-lg hover:bg-indigo-500/20"><i data-lucide="external-link" class="w-4 h-4"></i> Live Demo</a>` : ''}
-                </div>
-            ` : '';
+            const linkButtons = [
+                isProject && meta.github
+                    ? `<a class="terminal-btn" href="${esc(meta.github)}" target="_blank" rel="noopener noreferrer">Source code</a>` : '',
+                isProject && demoUrl
+                    ? `<a class="terminal-btn" href="${esc(demoUrl)}" target="_blank" rel="noopener noreferrer">Live demo</a>` : '',
+            ].filter(Boolean).join('');
+            const linksHtml = linkButtons ? `<div class="meta-links">${linkButtons}</div>` : '';
 
+            const description = meta.description || meta.summary || '';
             document.getElementById('post-meta').innerHTML = `
-                <div class="flex flex-wrap gap-2 mb-5">${tagsHtml}</div>
-                <h1 class="text-4xl md:text-5xl font-bold text-white mb-5 leading-tight" style="font-family: system-ui, sans-serif">${meta.title}</h1>
-                <p class="text-slate-400 text-lg mb-4 leading-relaxed">${meta.description || meta.summary || ''}</p>
-                <div class="flex items-center gap-3 text-slate-500 text-sm font-mono">
-                    <i data-lucide="calendar" class="w-4 h-4"></i>
-                    <span>${meta.date || ''}</span>
-                </div>
+                ${metaLine}
+                <h1>${esc(meta.title)}</h1>
+                ${description ? `<p class="lede">${esc(description)}</p>` : ''}
                 ${techHtml}
                 ${linksHtml}
             `;
@@ -230,25 +390,30 @@
 
             // 7. Footer
             document.getElementById('post-footer').innerHTML = `
-                <a href="${backHref}" class="flex items-center gap-2 text-slate-400 hover:text-white transition-colors text-sm">
-                    <i data-lucide="arrow-left" class="w-4 h-4"></i> ${backLabel}
-                </a>
-                <button onclick="copyLink()" id="share-btn" class="flex items-center gap-2 text-slate-400 hover:text-white transition-colors text-sm">
-                    <i data-lucide="link" class="w-4 h-4"></i> Copy link
-                </button>
+                <a class="terminal-btn" href="${BLOG_URL}"><span aria-hidden="true">←</span> Blog</a>
+                <button type="button" class="terminal-btn" id="share-btn">Copy link</button>
             `;
+            document.getElementById('share-btn').addEventListener('click', copyLink);
 
             document.getElementById('loading').classList.add('hidden');
             document.getElementById('post-container').classList.remove('hidden');
 
-            lucide.createIcons();
             hljs.highlightAll();
         }
 
+        // Turn a date string like "Mar. 2025", "2025-03-14" or "Mar. 2025 - Present"
+        // into a number so entries can be sorted. Unparseable dates sort last.
+        function dateKey(str) {
+            if (!str) return -Infinity;
+            const last = String(str).split(/\s[-–—]\s/).pop().trim();
+            if (/present/i.test(last)) return Date.now();
+            const t = Date.parse(last.replace(/\./g, ''));
+            return Number.isNaN(t) ? -Infinity : t;
+        }
+
         async function showListing() {
-            document.title = `Writing & Projects — ${SITE_AUTHOR}`;
-            document.getElementById('back-link').href = 'index.html';
-            document.getElementById('back-label').textContent = 'Home';
+            document.title = `Blog — ${SITE_AUTHOR}`;
+            setBackLink('index.html', 'Home');
 
             let posts = [], projects = [];
             try {
@@ -260,90 +425,71 @@
                 if (res.ok) projects = await res.json();
             } catch {}
 
-            const tagBadge = (t) =>
-                `<span class="text-[10px] font-mono text-indigo-400 uppercase tracking-widest bg-indigo-500/10 border border-indigo-500/20 px-2 py-0.5 rounded-full">${t}</span>`;
+            // One combined list, newest first (stable, so ties keep their file order).
+            const entries = [
+                ...posts.map(p => ({ ...p, isProject: false })),
+                ...projects.map(p => ({ ...p, isProject: true })),
+            ].sort((a, b) => dateKey(b.date) - dateKey(a.date));
 
-            const postCards = posts.map(p => `
-                <a href="post.html?p=${encodeURIComponent(p.slug)}" class="group flex flex-col bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden hover:border-indigo-500/50 hover:shadow-xl hover:shadow-indigo-500/10 transition-all duration-300 p-6 gap-3">
-                    <div class="flex flex-wrap gap-1.5">${(p.tags || []).map(tagBadge).join('')}</div>
-                    <h3 class="text-lg font-bold group-hover:text-indigo-400 transition-colors leading-snug">${p.title}</h3>
-                    <p class="text-slate-400 text-sm line-clamp-2 flex-1">${p.summary || p.description || ''}</p>
-                    <div class="flex items-center justify-between mt-1">
-                        <span class="text-slate-600 text-xs font-mono">${p.date || ''}</span>
-                        <span class="text-indigo-400 text-xs flex items-center gap-1 group-hover:gap-2 transition-all">Read <i data-lucide="arrow-right" class="w-3 h-3"></i></span>
-                    </div>
-                </a>
-            `).join('');
+            const rows = entries.map(e => {
+                const href = e.isProject
+                    ? (e.customLink || `${BLOG_URL}?p=project-${encodeURIComponent(e.slug)}`)
+                    : `${BLOG_URL}?p=${encodeURIComponent(e.slug)}`;
+                const external = /^https?:/.test(href);
+                const target = external ? ' target="_blank" rel="noopener noreferrer"' : '';
+                const tags = [...(e.tags || []), ...(e.tech || [])].slice(0, 4)
+                    .map(t => `[${esc(t)}]`).join(' ');
+                const description = e.summary || e.description || '';
 
-            const projCards = projects.map(p => {
-                const readMoreLink   = p.customLink ? p.customLink : `post.html?p=project-${encodeURIComponent(p.slug)}`;
-                const readMoreTarget = p.customLink && p.customLink.startsWith('http') ? 'target="_blank" rel="noopener noreferrer"' : '';
                 return `
-                <a href="${readMoreLink}" ${readMoreTarget} class="group flex flex-col bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden hover:border-indigo-500/50 hover:shadow-xl hover:shadow-indigo-500/10 transition-all duration-300 p-6 gap-3">
-                    <div class="flex flex-wrap gap-1.5">${[...(p.tags || []), ...(p.tech || [])].slice(0, 4).map(tagBadge).join('')}</div>
-                    <h3 class="text-lg font-bold group-hover:text-indigo-400 transition-colors leading-snug">${p.title}</h3>
-                    <p class="text-slate-400 text-sm line-clamp-2 flex-1">${p.description || p.summary || ''}</p>
-                    <div class="flex items-center justify-between mt-1">
-                        <span class="text-slate-600 text-xs font-mono">${p.date || ''}</span>
-                        <span class="text-indigo-400 text-xs flex items-center gap-1 group-hover:gap-2 transition-all">View <i data-lucide="arrow-right" class="w-3 h-3"></i></span>
-                    </div>
-                </a>
-                `;
+                <li>
+                    <a class="entry" href="${esc(href)}"${target}>
+                        <span class="entry-title"><span class="t">${esc(e.title)}</span>${external ? ' <span class="ext">↗</span>' : ''}</span>
+                        ${e.date ? `<span class="entry-date">${esc(e.date)}</span>` : ''}
+                        ${description ? `<span class="entry-desc">${esc(description)}</span>` : ''}
+                        <span class="entry-tags">${tags}</span>
+                    </a>
+                </li>`;
             }).join('');
 
-            const listingHtml = `
-                <div class="fade-in space-y-16">
-                    ${posts.length ? `
-                    <section>
-                        <h2 class="text-2xl font-bold text-white mb-1" style="font-family:system-ui,sans-serif">Writing</h2>
-                        <p class="text-slate-500 text-sm mb-6">Posts, postmortems, and write-ups.</p>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">${postCards}</div>
-                    </section>` : ''}
-                    ${projects.length ? `
-                    <section>
-                        <h2 class="text-2xl font-bold text-white mb-1" style="font-family:system-ui,sans-serif">Projects</h2>
-                        <p class="text-slate-500 text-sm mb-6">Things I've built.</p>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">${projCards}</div>
-                    </section>` : ''}
-                    ${!posts.length && !projects.length ? `
-                    <div class="text-center py-24 text-slate-500">
-                        <p class="text-4xl mb-4">📭</p>
-                        <p>Nothing here yet — check back soon!</p>
-                    </div>` : ''}
-                </div>
+            const container = document.getElementById('post-container');
+            container.innerHTML = `
+                <h1>Blog</h1>
+                <hr class="dashed">
+                <p id="intro">Posts, write-ups, and things I've built.</p>
+                ${entries.length
+                    ? `<ul class="entries">${rows}</ul>`
+                    : `<p class="muted">Nothing here yet. Check back soon.</p>`}
             `;
 
             document.getElementById('loading').classList.add('hidden');
-            const container = document.getElementById('post-container');
-            container.innerHTML = listingHtml;
             container.classList.remove('hidden');
-            lucide.createIcons();
         }
 
         function showNotFound() {
+            document.title = `Not found — ${SITE_AUTHOR}`;
             document.getElementById('loading').classList.add('hidden');
             document.getElementById('not-found').classList.remove('hidden');
-            lucide.createIcons();
         }
 
         window.addEventListener('scroll', () => {
             const doc = document.documentElement;
-            const scrolled = doc.scrollTop / (doc.scrollHeight - doc.clientHeight);
+            const max = doc.scrollHeight - doc.clientHeight;
+            const scrolled = max > 0 ? doc.scrollTop / max : 0;
             document.getElementById('progress-bar').style.width = (scrolled * 100) + '%';
         });
 
-        function copyLink() {
-            navigator.clipboard.writeText(window.location.href);
+        async function copyLink() {
             const btn = document.getElementById('share-btn');
-            btn.innerHTML = `<i data-lucide="check" class="w-4 h-4"></i> Copied!`;
-            lucide.createIcons();
-            setTimeout(() => {
-                btn.innerHTML = `<i data-lucide="link" class="w-4 h-4"></i> Copy link`;
-                lucide.createIcons();
-            }, 2000);
+            try {
+                await navigator.clipboard.writeText(window.location.href);
+                btn.textContent = 'Copied!';
+            } catch {
+                btn.textContent = 'Copy failed';
+            }
+            setTimeout(() => { btn.textContent = 'Copy link'; }, 2000);
         }
 
-        lucide.createIcons();
         init();
     </script>
 </body>

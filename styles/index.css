@@ -238,3 +238,33 @@ h1{
   cursor: not-allowed;
   background-color: transparent;
 }
+
+#social-links {
+    position: absolute;
+    right: 24px;              /* clears the panel's scrollbar */
+    top: 20px;
+    z-index: 10;              /* stays above the info panel */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 10px;
+    max-width: calc(40vw - 48px);
+}
+
+a.terminal-btn {
+    text-decoration: none;
+    box-sizing: border-box;
+    background-color: #1b1b1b; /* matches the panel so scrolled text doesn't show through */
+}
+
+a.terminal-btn:hover,
+a.terminal-btn:focus-visible {
+    background-color: #79c0ff;
+    color: #1b1b1b;
+    border-style: solid;
+}
+
+/* Push the panel's content below the button bar */
+#index {
+    padding-top: 68px;
+}
