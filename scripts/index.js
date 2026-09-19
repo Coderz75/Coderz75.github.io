@@ -43,7 +43,12 @@ class CelestialObject{
                 if (isOpening) {
                     sim.animateToObject(this, 4, 1500);
                 }else{
-                    sim.cameraTarget = null;
+                    if(this.parent.name == "Sun"){
+                        sim.animateToObject(this.parent, 1, 1500);
+                        sim.cameraTarget = null;
+                    }else{
+                        sim.animateToObject(this.parent, 4, 1500);
+                    }
                 }
             });
         }
