@@ -268,3 +268,57 @@ a.terminal-btn:focus-visible {
 #index {
     padding-top: 68px;
 }
+
+#sheet-toggle { display: none; }
+
+@media (max-width: 768px) {
+    #simulation {
+        width: 100vw;
+        height: 100vh;
+        height: 100dvh;
+    }
+
+    #index {
+        top: auto;
+        bottom: 0;
+        width: 100vw;
+        height: 70vh;
+        height: 70dvh;
+        padding-top: 20px;              /* the link bar isn't inside the panel here */
+        border-top: 1px dashed #333;
+        transform: translateY(100%);    /* parked below the screen */
+        transition: transform 0.3s ease-out;
+        z-index: 20;
+    }
+    #index.open { transform: translateY(0); }
+
+    #sheet-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        left: 50%;
+        bottom: 0;
+        transform: translateX(-50%);
+        width: 72px;
+        height: 32px;
+        padding: 0;
+        z-index: 30;
+        background: #1b1b1b;
+        color: #79c0ff;
+        border: 1px dashed #333;
+        border-bottom: none;
+        border-radius: 2px 2px 0 0;
+        font-family: inherit;
+        font-size: 12px;
+        cursor: pointer;
+        transition: bottom 0.3s ease-out;
+    }
+    #sheet-toggle .arrow { transition: transform 0.3s ease-out; }
+    #index.open + #sheet-toggle { bottom: 70vh; bottom: 70dvh; }
+    #index.open + #sheet-toggle .arrow { transform: rotate(180deg); }
+
+    /* link bar stays on the simulation, just a bit smaller so it fits on one row */
+    #social-links { right: 12px; top: 12px; gap: 8px; max-width: calc(100vw - 24px); }
+    #social-links .terminal-btn { font-size: 12px; padding: 5px 8px; }
+}

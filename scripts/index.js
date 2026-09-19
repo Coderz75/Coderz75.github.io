@@ -1,4 +1,9 @@
 "use strict";
+const mobileQuery = window.matchMedia("(max-width: 768px)");
+function setSheet(open){
+    document.getElementById("index").classList.toggle("open", open);
+    document.getElementById("sheet-toggle").setAttribute("aria-expanded", open);
+}
 
 class CelestialObject{
     constructor(name, fill, radius, call, parent, index, distance, angularVelocity, fixed=false){
@@ -47,6 +52,7 @@ class CelestialObject{
 
                 if (isOpening) {
                     sim.animateToObject(this, 4, 1500);
+                    if (mobileQuery.matches && this.parent.name != "Sun") setSheet(true); 
                 }else{
                     if(this.parent.name == "Sun"){
                         sim.animateToObject(this.parent, sim.homeZoom, 1500);
@@ -294,6 +300,11 @@ class Simulation{
         ];
         
     }
+    visibleHeight(rec){
+        if(!mobileQuery.matches) return rec.height;
+        const sheetTop = document.getElementById("index").getBoundingClientRect().top;
+        return Math.min(rec.height, sheetTop - rec.top);
+    }
     animateToObject(obj, targetZoom = 4, duration = 1500) {
         this.cameraTarget = obj;
         this.cameraAnimating = true;
@@ -321,7 +332,7 @@ class Simulation{
 
             // 2. Calculate ideal centered camera target position at current frame
             const targetX = obj.position.x - (rec.width / this.zoom) / 2;
-            const targetY = obj.position.y - (rec.height / this.zoom) / 2;
+            const targetY = obj.position.y - (this.visibleHeight(rec) / this.zoom) / 2;
 
             // 3. Smoothly interpolate position from start to target
             this.newViewBox.x = startX + (targetX - startX) * e;
@@ -352,8 +363,8 @@ class Simulation{
         let rec = this.svg.getBoundingClientRect();
 
         // Keep the target in the center of the screen
-        this.newViewBox.x =
-            this.cameraTarget.position.x - (rec.width / this.zoom) / 2;
+        this.newViewBox.y =
+    this.cameraTarget.position.y - (this.visibleHeight(rec) / this.zoom) / 2;
 
         this.newViewBox.y =
             this.cameraTarget.position.y - (rec.height / this.zoom) / 2;
@@ -523,3 +534,7 @@ function tick(currentTime){
     requestAnimationFrame(tick);
 }
 requestAnimationFrame(tick);
+
+document.getElementById("sheet-toggle").addEventListener("click", () => {
+    setSheet(!document.getElementById("index").classList.contains("open"));
+});
