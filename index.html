@@ -36,20 +36,30 @@
             <h1>Nuaym S. Syed</h1>
             <hr class="dashed">
             <p id = "intro">Hey, I'm a second-year Computer Engineering + Math student at the University of Washington.</p>
-            <details class="terminal-dropdown">
-                <summary>
+            <details class="terminal-dropdown" id="education-dropdown">
+                <summary id="education-dropdown-title">
                     <span class="dropdown-title">Education</span>
                     <span class="dropdown-arrow">▼</span>
                 </summary>
-                <div class="dropdown-content">
-                    <p>> University of Washington</p>
-                    <small>&nbsp;&nbsp;Sep. 2026 - Jun. 2029</small>
-                    <ul>
-                        <li>Currently Pursuing a B.S in Computer Engineering and a B.A in Mathematics</li>
-                        <li>Also pursuing a minor in Physics (experimental track)</li>
-                        <li>Currently taking: Math 33X (Honors Advanced Calculus), CSE 311 (Foundations of Computing), PHYS 225 (Intro. to Quantum Mechanics), EE 215 (Intro. to Electrical Engineering)</li>
-                    </ul>
-                </div>
+                <!-- Nested Dropdown with Inline Date -->
+                <details class="terminal-dropdown nested-dropdown" id = "uw-dropdown">
+                    <summary id="uw-dropdown-title">
+                        <div class="summary-left">
+                            <span class="dropdown-title">University of Washington</span>
+                        </div>
+                        <div class="summary-right">
+                            <small class="degree-dates">Sep. 2026 - Jun. 2029</small>
+                            <span class="dropdown-arrow">▼</span>
+                        </div>
+                    </summary>
+                    <div class="dropdown-content">
+                        <ul>
+                            <li>Currently Pursuing a B.S in Computer Engineering and a B.A in Mathematics</li>
+                            <li>Also pursuing a minor in Physics (experimental track)</li>
+                            <li>Currently taking: Math 33X (Honors Advanced Calculus), CSE 311 (Foundations of Computing), PHYS 225 (Intro. to Quantum Mechanics), EE 215 (Intro. to Electrical Engineering)</li>
+                        </ul>
+                    </div>
+                </details>
             </details>
         </div>
         <script src="scripts/index.js"></script>

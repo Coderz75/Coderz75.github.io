@@ -105,3 +105,67 @@ h1{
 .dropdown-content p {
   margin: 4px 0;
 }
+
+@supports (interpolate-size: allow-keywords) {
+    :root {
+        interpolate-size: allow-keywords; /* lets height animate to/from `auto` */
+    }
+    details::details-content {
+        height: 0;
+        overflow: clip; /* hide content that hasn't "grown into view" yet */
+        transition: height 0.3s ease-out, content-visibility 0.3s ease-out allow-discrete;
+    }
+    details[open]::details-content {
+        height: auto;
+    }
+}
+/* ==========================================================================
+   NESTED DROPDOWN & STYLED INDENT PROMPT
+   ========================================================================== */
+
+.terminal-dropdown summary .summary-left,
+.terminal-dropdown summary .summary-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.degree-dates {
+  color: #888;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  font-weight: normal;
+  text-transform: none;
+}
+
+/* Indentation & left vertical guide line */
+.terminal-dropdown.nested-dropdown {
+  border-top: none;
+  border-bottom: 1px dashed #282828;
+  margin-left: 8px;
+  padding-left: 12px;
+  border-left: 2px solid #333; 
+}
+
+.terminal-dropdown.nested-dropdown summary {
+  font-weight: normal;
+  padding: 8px 0;
+  color: #e0e0e0;
+}
+
+/* Automatically prepends the terminal prompt '>' as part of the styled indent */
+.terminal-dropdown.nested-dropdown summary .summary-left::before {
+  content: '>';
+  color: #888;
+  font-weight: bold;
+}
+
+.terminal-dropdown.nested-dropdown .dropdown-content {
+  padding-top: 4px;
+  padding-bottom: 8px;
+}
+
+.terminal-dropdown.nested-dropdown ul {
+  margin: 4px 0 0 0;
+  padding-left: 20px;
+}
