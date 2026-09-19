@@ -241,8 +241,8 @@
 
     <header class="topbar">
         <div class="wrap topbar-inner">
-            <a class="brand" href="index.html">Nuaym S. Syed</a>
-            <a id="back-link" class="terminal-btn" href="index.html"><span aria-hidden="true">←</span> <span id="back-label">Back</span></a>
+            <a class="brand" href="./">Nuaym S. Syed</a>
+            <a id="back-link" class="terminal-btn" href="./"><span aria-hidden="true">←</span> <span id="back-label">Back</span></a>
         </div>
     </header>
 
@@ -280,7 +280,7 @@
 
     <script>
         const SITE_AUTHOR = 'Nuaym Syed';
-        const BLOG_URL = 'post.html';
+        const BLOG_URL = 'post';
 
         marked.setOptions({ breaks: true, gfm: true });
 
@@ -413,7 +413,7 @@
 
         async function showListing() {
             document.title = `Blog — ${SITE_AUTHOR}`;
-            setBackLink('index.html', 'Home');
+            setBackLink('./', 'Home');
 
             let posts = [], projects = [];
             try {
