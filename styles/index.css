@@ -169,3 +169,22 @@ h1{
   margin: 4px 0 0 0;
   padding-left: 20px;
 }
+
+#index a {
+  color: #79c0ff;               /* Cool soft blue for readability on dark background */
+  text-decoration: none;
+  border-bottom: 1px dotted #79c0ff;
+  transition: color 0.2s ease, border-bottom-color 0.2s ease, background-color 0.2s ease;
+  padding: 0 2px;
+  border-radius: 2px;
+  word-break: break-all;        /* Prevents long links like raw GitHub URLs from breaking layout */
+}
+
+/* Hover & Focus States */
+#index a:hover,
+#index a:focus-visible {
+  color: #1b1b1b;              /* Matches your #index background */
+  background-color: #79c0ff;   /* High-contrast terminal highlight effect */
+  border-bottom-color: transparent;
+  outline: none;
+}

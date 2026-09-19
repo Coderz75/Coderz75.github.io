@@ -21,7 +21,12 @@ class CelestialObject{
                     sim.cameraTarget = this;
                     sim.animateToObject(this, 4, 1500);
                 }else{
-                    sim.cameraTarget = null;
+                    if(this.parent.name == "Sun"){
+                        sim.animateToObject(this.parent, 1, 1500);
+                        sim.cameraTarget = null;
+                    }else{
+                        sim.animateToObject(this.parent, 4, 1500);
+                    }
                 }
             })
         }
@@ -129,7 +134,7 @@ class Simulation{
             );
         const education = new CelestialObject(
                 "Education", 
-                "blue",
+                "#4C9AFF",
                 10, 
                 "education-dropdown",
                 sun,
@@ -138,12 +143,47 @@ class Simulation{
                 0.01,
                 false
             );
+        const research = new CelestialObject(
+            "Research",
+            "#F4736B",
+            8,
+            "research-dropdown",
+            sun,
+            ids++,
+            250,
+            0.002,
+            false
+        )
+        const experience = new CelestialObject(
+            "Experience",
+            "#34D399",
+            12,
+            "experience-dropdown",
+            sun,
+            ids++,
+            193,
+            0.008,
+        )
+        const projects = new CelestialObject(
+            "Projects",
+            "#F472B6",
+            12,
+            "projects-dropdown",
+            sun,
+            ids++,
+            300,
+            0.002,
+            false
+        )
         this.elements = [
             sun,
             education,
+            research,
+            projects,
+            experience,
             new CelestialObject(
                 "UW", 
-                "purple",
+                "#4B2E83",
                 5,
                 "uw-dropdown",
                 education,
@@ -151,7 +191,106 @@ class Simulation{
                 30,
                 0.1,
                 false
-            )
+            ),
+            new CelestialObject(
+                "Make4All Group",
+                "#FFB0A8",
+                3,
+                "vtp-dropdown",
+                research,
+                ids++,
+                25,
+                0.1,
+                false
+            ),
+            new CelestialObject(
+                "G.R.A.S",
+                "#FCD34D",
+                6,
+                "gras-dropdown",
+                projects,
+                ids++,
+                25,
+                0.05,
+                false
+            ),
+            new CelestialObject(
+                "Uprooted",
+                "#FDBA74",
+                4,
+                "uprooted-dropdown",
+                projects,
+                ids++,
+                37,
+                0.04,
+                false
+            ),
+            new CelestialObject(
+                "Runlang",
+                "#F9A8D4",
+                4,
+                "runlang-dropdown",
+                projects,
+                ids++,
+                41,
+                0.03,
+                false
+            ),
+            new CelestialObject(
+                "Alang",
+                "#93C5FD",
+                3,
+                "alang-dropdown",
+                projects,
+                ids++,
+                50,
+                0.02,
+                false
+            ),
+            new CelestialObject(
+                "Immune Quest",
+                "#FDA4AF",
+                3,
+                "immune-dropdown",
+                projects,
+                ids++,
+                55,
+                0.01,
+                false
+            ),
+            new CelestialObject(
+                "Moon Model",
+                "#CBD5E1",
+                3,
+                "moon-dropdown",
+                projects,
+                ids++,
+                60,
+                0.008,
+                false
+            ),
+            new CelestialObject(
+                "MM",
+                "#A7F3D0",
+                6,
+                "mm-dropdown",
+                experience,
+                ids++,
+                25,
+                0.05,
+                false
+            ),
+            new CelestialObject(
+                "TSC",
+                "#1F9D6B",
+                3,
+                "tsc-dropdown",
+                experience,
+                ids++,
+                30,
+                0.04,
+                false
+            ),
         ];
 
     }
