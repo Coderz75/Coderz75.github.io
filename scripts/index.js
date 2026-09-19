@@ -78,6 +78,11 @@ class CelestialObject{
                     }
                 }
             });
+        }else{ //sun
+            circle.addEventListener("click", () => {
+                sim.animateToObject(this, sim.homeZoom, 1500);
+                sim.cameraTarget = null;
+            });
         }
         this.svg.appendChild(circle);
 
@@ -197,12 +202,24 @@ class Simulation{
             0.00212,
             false
         )
+        const battlecode = new CelestialObject(
+            "Battlecode",
+            "#c40ab8",
+            12,
+            "battlecode-dropdown",
+            sun,
+            ids++,
+            422,
+            0.00212,
+            false
+        )
         this.elements = [
             sun,
             education,
             research,
             projects,
             experience,
+            battlecode,
             new CelestialObject(
                 "UW", 
                 "#4B2E83",
@@ -313,7 +330,40 @@ class Simulation{
                 0.0427,
                 false
             ),
-        ];
+            new CelestialObject(
+                "MIT26",
+                "#FF1323",
+                5,
+                "mitbc26-dropdown",
+                battlecode,
+                ids++,
+                39,
+                0.0411,
+                false
+            ),
+            new CelestialObject(
+                "CAM26E",
+                "#85B09A",
+                6,
+                "cambc26e-dropdown",
+                battlecode,
+                ids++,
+                25,
+                0.08,
+                false
+            ),
+            new CelestialObject(
+                "FCL26",
+                "#004791",
+                3,
+                "fcl26-dropdown",
+                battlecode,
+                ids++,
+                82,
+                0.0135,
+                false
+            ),
+        ];    
         
     }
     visibleHeight(rec){
