@@ -188,3 +188,53 @@ h1{
   border-bottom-color: transparent;
   outline: none;
 }
+
+/* ==========================================================================
+   BUTTON STYLING (Terminal Aesthetic)
+   ========================================================================== */
+
+#index button,
+.terminal-btn {
+  font-family: inherit;             /* Keeps your Courier New / monospace stack */
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #79c0ff;                   /* Matching soft blue accent */
+  background-color: transparent;
+  border: 1px dashed #79c0ff;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  user-select: none;
+}
+
+/* Hover & Focus States (Inverted Selection Effect) */
+#index button:hover,
+#index button:focus-visible,
+.terminal-btn:hover,
+.terminal-btn:focus-visible {
+  color: #1b1b1b;                  /* Dark background color */
+  background-color: #79c0ff;       /* Solid highlight fill */
+  border-style: solid;
+  outline: none;
+}
+
+/* Active / Pressed State */
+#index button:active,
+.terminal-btn:active {
+  transform: translateY(1px);      /* Subtle tactile press feedback */
+  opacity: 0.85;
+}
+
+/* Optional Disabled State */
+#index button:disabled,
+.terminal-btn:disabled {
+  color: #555;
+  border-color: #444;
+  cursor: not-allowed;
+  background-color: transparent;
+}
