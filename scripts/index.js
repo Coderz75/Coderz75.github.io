@@ -4,6 +4,21 @@ function setSheet(open){
     document.getElementById("index").classList.toggle("open", open);
     document.getElementById("sheet-toggle").setAttribute("aria-expanded", open);
 }
+let scrollTimer;
+function scrollIndexTo(id){ // id = a dropdown's id, or null to scroll back to the top
+    clearTimeout(scrollTimer);
+    // wait for the dropdowns to finish opening/closing (0.3s) so the layout has settled
+    scrollTimer = setTimeout(() => {
+        const panel = document.getElementById("index");
+        let top = 0;
+        if(id){
+            const pad = parseFloat(getComputedStyle(panel).paddingTop); // leaves room for the link bar
+            top = document.getElementById(id).getBoundingClientRect().top
+                - panel.getBoundingClientRect().top + panel.scrollTop - pad;
+        }
+        panel.scrollTo({top: top, behavior: "smooth"});
+    }, 350);
+}
 
 class CelestialObject{
     constructor(name, fill, radius, call, parent, index, distance, angularVelocity, fixed=false){
@@ -52,6 +67,7 @@ class CelestialObject{
 
                 if (isOpening) {
                     sim.animateToObject(this, 4, 1500);
+                    scrollIndexTo(this.call);
                     if (mobileQuery.matches && this.parent.name != "Sun") setSheet(true); 
                 }else{
                     if(this.parent.name == "Sun"){
