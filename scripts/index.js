@@ -22,7 +22,7 @@ class CelestialObject{
                     sim.animateToObject(this, 4, 1500);
                 }else{
                     if(this.parent.name == "Sun"){
-                        sim.animateToObject(this.parent, 1, 1500);
+                        sim.animateToObject(this.parent, sim.homeZoom, 1500);
                         sim.cameraTarget = null;
                     }else{
                         sim.animateToObject(this.parent, 4, 1500);
@@ -49,7 +49,7 @@ class CelestialObject{
                     sim.animateToObject(this, 4, 1500);
                 }else{
                     if(this.parent.name == "Sun"){
-                        sim.animateToObject(this.parent, 1, 1500);
+                        sim.animateToObject(this.parent, sim.homeZoom, 1500);
                         sim.cameraTarget = null;
                     }else{
                         sim.animateToObject(this.parent, 4, 1500);
@@ -121,10 +121,10 @@ class Simulation{
         this.svg = document.getElementById("sim-svg");
         this.init_events();
         let ids = 0;
-        const sun = new CelestialObject(
+                const sun = new CelestialObject(
                 "Sun", 
                 "url(#sunGlow)", 
-                80, 
+                50, 
                 null,
                 null,
                 ids++,
@@ -139,8 +139,8 @@ class Simulation{
                 "education-dropdown",
                 sun,
                 ids++,
-                150,
-                0.01,
+                110,
+                0.01592,
                 false
             );
         const research = new CelestialObject(
@@ -150,8 +150,8 @@ class Simulation{
             "research-dropdown",
             sun,
             ids++,
-            250,
-            0.002,
+            291,
+            0.0037,
             false
         )
         const experience = new CelestialObject(
@@ -161,8 +161,8 @@ class Simulation{
             "experience-dropdown",
             sun,
             ids++,
-            193,
-            0.008,
+            204,
+            0.00631,
         )
         const projects = new CelestialObject(
             "Projects",
@@ -171,8 +171,8 @@ class Simulation{
             "projects-dropdown",
             sun,
             ids++,
-            300,
-            0.002,
+            422,
+            0.00212,
             false
         )
         this.elements = [
@@ -189,7 +189,7 @@ class Simulation{
                 education,
                 ids++,
                 30,
-                0.1,
+                0.0609,
                 false
             ),
             new CelestialObject(
@@ -200,7 +200,7 @@ class Simulation{
                 research,
                 ids++,
                 25,
-                0.1,
+                0.08,
                 false
             ),
             new CelestialObject(
@@ -211,7 +211,7 @@ class Simulation{
                 projects,
                 ids++,
                 25,
-                0.05,
+                0.08,
                 false
             ),
             new CelestialObject(
@@ -221,8 +221,8 @@ class Simulation{
                 "uprooted-dropdown",
                 projects,
                 ids++,
-                37,
-                0.04,
+                39,
+                0.0411,
                 false
             ),
             new CelestialObject(
@@ -232,8 +232,8 @@ class Simulation{
                 "runlang-dropdown",
                 projects,
                 ids++,
-                41,
-                0.03,
+                51,
+                0.0275,
                 false
             ),
             new CelestialObject(
@@ -243,8 +243,8 @@ class Simulation{
                 "alang-dropdown",
                 projects,
                 ids++,
-                50,
-                0.02,
+                62,
+                0.0205,
                 false
             ),
             new CelestialObject(
@@ -254,8 +254,8 @@ class Simulation{
                 "immune-dropdown",
                 projects,
                 ids++,
-                55,
-                0.01,
+                72,
+                0.0164,
                 false
             ),
             new CelestialObject(
@@ -265,8 +265,8 @@ class Simulation{
                 "moon-dropdown",
                 projects,
                 ids++,
-                60,
-                0.008,
+                82,
+                0.0135,
                 false
             ),
             new CelestialObject(
@@ -277,7 +277,7 @@ class Simulation{
                 experience,
                 ids++,
                 25,
-                0.05,
+                0.08,
                 false
             ),
             new CelestialObject(
@@ -287,16 +287,17 @@ class Simulation{
                 "tsc-dropdown",
                 experience,
                 ids++,
-                30,
-                0.04,
+                38,
+                0.0427,
                 false
             ),
         ];
-
+        
     }
     animateToObject(obj, targetZoom = 4, duration = 1500) {
         this.cameraTarget = obj;
         this.cameraAnimating = true;
+        const animationId = this.animationId = (this.animationId || 0) + 1;
 
         // Capture starting state
         const startZoom = this.zoom;
@@ -309,7 +310,7 @@ class Simulation{
 
         const animate = (now) => {
             // If the user starts dragging during animation, cancel the camera transit
-            if (!this.cameraAnimating) return;
+            if (!this.cameraAnimating || animationId !== this.animationId) return;
 
             const rec = this.svg.getBoundingClientRect();
             const t = Math.min((now - startTime) / duration, 1);
@@ -376,13 +377,14 @@ class Simulation{
         this.pinchLast = {x: 0, y: 0, distance: 0};
         this.svg.style.touchAction = "none";
         let rec = this.svg.getBoundingClientRect();
+        this.zoom = this.homeZoom = Math.min(rec.width, rec.height) / (2 * 422);
         this.viewBox = {
-            x: -rec.width / 2,
-            y: -rec.height / 2,
+            x: -rec.width / this.zoom / 2,
+            y: -rec.height / this.zoom / 2,
         };
         this.newViewBox = {
-            x: -rec.width / 2,
-            y: -rec.height / 2,
+            x: -rec.width / this.zoom / 2,
+            y: -rec.height / this.zoom / 2,
         };
         this.svg.setAttribute("viewBox", `${this.newViewBox.x} ${this.newViewBox.y} ${rec.width / this.zoom} ${rec.height / this.zoom}`);
 
