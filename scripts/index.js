@@ -1,7 +1,7 @@
 "use strict";
 const mobileQuery = window.matchMedia("(max-width: 768px)");
 function setSheet(open){
-    document.getElementById("index").classList.toggle("open", open);
+    document.getElementById("index").classList.toggle("closed", !open);
     document.getElementById("sheet-toggle").setAttribute("aria-expanded", open);
 }
 let scrollTimer;
@@ -39,7 +39,7 @@ class CelestialObject{
                 const isOpening = sim.cameraTarget != this;
                 if (isOpening) {
                     sim.cameraTarget = this;
-                    sim.animateToObject(this, 4, 1500);
+                    sim.animateToObject(this, (mobileQuery.matches) ? 2.5: 4, 1500);
                 }else{
                     if(this.parent.name == "Sun"){
                         sim.animateToObject(this.parent, sim.homeZoom, 1500);
@@ -66,7 +66,7 @@ class CelestialObject{
                 const targetEl = document.getElementById(this.call);
 
                 if (isOpening) {
-                    sim.animateToObject(this, 4, 1500);
+                    sim.animateToObject(this, (mobileQuery.matches) ? 2.5: 4, 1500);
                     scrollIndexTo(this.call);
                     if (mobileQuery.matches && this.parent.name != "Sun") setSheet(true); 
                 }else{
@@ -537,10 +537,13 @@ class Simulation{
                 this.pointerOrigin.y = event.clientY;
             }
         },{ passive: false });
-        window.addEventListener('resize', (event) => {
+        const resizeObserver = new ResizeObserver(() => {
             let rec = this.svg.getBoundingClientRect();
             this.svg.setAttribute("viewBox", `${this.newViewBox.x} ${this.newViewBox.y} ${rec.width / this.zoom} ${rec.height / this.zoom}`);
+            this.homeZoom = Math.min(rec.width, rec.height) / (2 * 422);
         });
+
+        resizeObserver.observe(this.svg);
     }
 
     zoomAt(screenX, screenY, factor){
@@ -602,5 +605,6 @@ function tick(currentTime){
 requestAnimationFrame(tick);
 
 document.getElementById("sheet-toggle").addEventListener("click", () => {
-    setSheet(!document.getElementById("index").classList.contains("open"));
+    const isClosed = document.getElementById("index").classList.contains("closed");
+    setSheet(isClosed); 
 });

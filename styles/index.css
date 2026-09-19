@@ -274,6 +274,12 @@ a.terminal-btn:focus-visible {
 @media (max-width: 768px) {
     #simulation {
         width: 100vw;
+        height: 30vh;
+        height: 30dvh;
+        transition: height 0.3s ease-out;
+    }
+    #index.closed ~ #simulation,
+    body:has(#index.closed) #simulation {
         height: 100vh;
         height: 100dvh;
     }
@@ -286,11 +292,10 @@ a.terminal-btn:focus-visible {
         height: 70dvh;
         padding-top: 20px;              /* the link bar isn't inside the panel here */
         border-top: 1px dashed #333;
-        transform: translateY(100%);    /* parked below the screen */
         transition: transform 0.3s ease-out;
         z-index: 20;
     }
-    #index.open { transform: translateY(0); }
+    #index.closed { transform: translateY(100%); }
 
     #sheet-toggle {
         display: flex;
@@ -298,7 +303,9 @@ a.terminal-btn:focus-visible {
         justify-content: center;
         position: fixed;
         left: 50%;
-        bottom: 0;
+        bottom: 70vh;
+        bottom: 70dvh;
+        transition: bottom 0.3s ease-out;
         transform: translateX(-50%);
         width: 72px;
         height: 32px;
@@ -312,11 +319,10 @@ a.terminal-btn:focus-visible {
         font-family: inherit;
         font-size: 12px;
         cursor: pointer;
-        transition: bottom 0.3s ease-out;
     }
-    #sheet-toggle .arrow { transition: transform 0.3s ease-out; }
-    #index.open + #sheet-toggle { bottom: 70vh; bottom: 70dvh; }
-    #index.open + #sheet-toggle .arrow { transform: rotate(180deg); }
+    #sheet-toggle .arrow { transform: rotate(180deg); transition: transform 0.3s ease-out; }
+    #index.closed + #sheet-toggle { bottom: 0; }
+    #index.closed + #sheet-toggle .arrow { transform: rotate(0deg); }
 
     /* link bar stays on the simulation, just a bit smaller so it fits on one row */
     #social-links { right: 12px; top: 12px; gap: 8px; max-width: calc(100vw - 24px); }
