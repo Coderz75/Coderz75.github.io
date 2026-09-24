@@ -45,7 +45,7 @@ class CelestialObject{
                         sim.animateToObject(this.parent, sim.homeZoom, 1500);
                         sim.cameraTarget = null;
                     }else{
-                        sim.animateToObject(this.parent, 4, 1500);
+                        sim.animateToObject(this.parent, (mobileQuery.matches) ? 2.5: 4, 1500);
                     }
                 }
             })
@@ -74,7 +74,7 @@ class CelestialObject{
                         sim.animateToObject(this.parent, sim.homeZoom, 1500);
                         sim.cameraTarget = null;
                     }else{
-                        sim.animateToObject(this.parent, 4, 1500);
+                        sim.animateToObject(this.parent, (mobileQuery.matches) ? 2.5: 4, 1500);
                     }
                 }
             });
